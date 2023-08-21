@@ -8,6 +8,7 @@ int main()
 	int width = 80, height = 24, ch;
 	const char *character1 = "@";
 	int playerposx = rand() % width, playerposy = rand() % height;
+	int screenx = 0, screeny = 0;
 	
 	initscr();
 	noecho();
@@ -58,6 +59,29 @@ int main()
 			{
 				playerposy = height;
 			}
+		}
+
+		if(ch == '?')
+		{
+			mvprintw(screeny, screenx, "Press a to move left");
+			screeny++;
+			mvprintw(screeny, screenx, "Press d to move right");
+			screeny++;
+			mvprintw(screeny, screenx, "Press w to move up");
+			screeny++;
+			mvprintw(screeny, screenx, "Press s to move down");
+			screeny++;
+			mvprintw(screeny, screenx, "Press ? to view this help");
+			screeny++;
+			mvprintw(screeny, screenx, "Press a key to exit this help");
+
+			refresh();
+			
+			getch();
+
+			clear();
+
+			screeny = 0;
 		}
 
 		mvprintw(playerposy, playerposx, character1);
