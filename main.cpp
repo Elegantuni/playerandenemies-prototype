@@ -24,41 +24,21 @@ int main()
 		if(ch == 'a')
 		{
 			playerposx--;
-
-			if(playerposx < 0)
-			{
-				playerposx = 0;
-			}
 		}
 
 		if(ch == 'd')
 		{
 			playerposx++;
-
-			if(playerposx > width)
-			{
-				playerposx = width;
-			}
 		}
 
 		if(ch == 'w')
 		{
 			playerposy--;
-
-			if(playerposy < 0)
-			{
-				playerposy = 0;
-			}
 		}
 
 		if(ch == 's')
 		{
 			playerposy++;
-
-			if(playerposy > height)
-			{
-				playerposy = height;
-			}
 		}
 
 		if(ch == '?')
@@ -84,8 +64,26 @@ int main()
 			screeny = 0;
 		}
 
-		mvprintw(playerposy, playerposx, character1);
-		move(playerposy, playerposx);
+		if(playerposx < 0 && playerposy < 0)
+		{
+			mvprintw(height - abs(playerposy % height) + 1, width - abs(playerposx % width) + 1, character1);
+			move(height - abs(playerposy % height) + 1, width - abs(playerposx % width) + 1);
+		}
+		else if (playerposx < 0 && playerposy >= 0)
+		{
+			mvprintw(abs(playerposy % height), width - abs(playerposx % width) + 1, character1);
+			move(abs(playerposy % height), width - abs(playerposx % width) + 1);
+		}
+		else if (playerposx >=0 && playerposy < 0)
+		{
+			mvprintw(height - abs(playerposy % height) + 1, abs(playerposx % width), character1);
+			move(height - abs(playerposy % height) + 1, abs(playerposx % width));
+		}
+		else
+		{
+			mvprintw(abs(playerposy % height), abs(playerposx % width), character1);
+			move(abs(playerposy % height), abs(playerposx % width));
+		}
 
 		refresh();
 	}
