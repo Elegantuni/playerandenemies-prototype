@@ -1,44 +1,68 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <time.h>
+#include "playercharacter.h"
+#include <math.h>
+#include <iostream>
+using namespace std;
 
 int main()
 {
 	srand(time(NULL));
 	int width = 80, height = 24, ch;
-	const char *character1 = "@";
-	int playerposx = rand() % width, playerposy = rand() % height;
 	int screenx = 0, screeny = 0;
+	int playeramount = 0;
+	int enemiesamount = 0;
+	int playerindex1 = 0;
+	
+	while(enemiesamount < 50 || enemiesamount > 100000)
+	{
+		printf("Enter a amount for the amount of enemies (50-100000): ");
+
+		cin >> enemiesamount;
+	}
+
+	playeramount = ceil(enemiesamount / 2);
+
+	const int playeramountreal = playeramount;
+	
+	struct playercharacter player[playeramountreal];
+
+	player[playerindex1].character1 = "@";
+	player[playerindex1].playerposx = rand() % width;
+	player[playerindex1].playerposy = rand() % height;
 	
 	initscr();
 	noecho();
 	cbreak();
 	
-	mvprintw(playerposy, playerposx, character1);
-	move(playerposy, playerposx);
+	mvprintw(player[playerindex1].playerposy, player[playerindex1].playerposx, player[playerindex1].character1);
+	move(player[playerindex1].playerposy, player[playerindex1].playerposx);
 
+	refresh();
+	
 	while((ch = getch()) != 'q')
 	{
 		clear();
 		
 		if(ch == 'a')
 		{
-			playerposx--;
+			player[playerindex1].playerposx--;
 		}
 
 		if(ch == 'd')
 		{
-			playerposx++;
+			player[playerindex1].playerposx++;
 		}
 
 		if(ch == 'w')
 		{
-			playerposy--;
+			player[playerindex1].playerposy--;
 		}
 
 		if(ch == 's')
 		{
-			playerposy++;
+			player[playerindex1].playerposy++;
 		}
 
 		if(ch == '?')
@@ -64,25 +88,25 @@ int main()
 			screeny = 0;
 		}
 
-		if(playerposx < 0 && playerposy < 0)
+		if(player[playerindex1].playerposx < 0 && player[playerindex1].playerposy < 0)
 		{
-			mvprintw(height - abs(playerposy % height) + 1, width - abs(playerposx % width) + 1, character1);
-			move(height - abs(playerposy % height) + 1, width - abs(playerposx % width) + 1);
+			mvprintw(height - abs(player[playerindex1].playerposy % height) + 1, width - abs(player[playerindex1].playerposx % width) + 1, player[playerindex1].character1);
+			move(height - abs(player[playerindex1].playerposy % height) + 1, width - abs(player[playerindex1].playerposx % width) + 1);
 		}
-		else if (playerposx < 0 && playerposy >= 0)
+		else if (player[playerindex1].playerposx < 0 && player[playerindex1].playerposy >= 0)
 		{
-			mvprintw(abs(playerposy % height), width - abs(playerposx % width) + 1, character1);
-			move(abs(playerposy % height), width - abs(playerposx % width) + 1);
+			mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width) + 1, player[playerindex1].character1);
+			move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width) + 1);
 		}
-		else if (playerposx >=0 && playerposy < 0)
+		else if (player[playerindex1].playerposx >=0 && player[playerindex1].playerposy < 0)
 		{
-			mvprintw(height - abs(playerposy % height) + 1, abs(playerposx % width), character1);
-			move(height - abs(playerposy % height) + 1, abs(playerposx % width));
+			mvprintw(height - abs(player[playerindex1].playerposy % height) + 1, abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			move(height - abs(player[playerindex1].playerposy % height) + 1, abs(player[playerindex1].playerposx % width));
 		}
 		else
 		{
-			mvprintw(abs(playerposy % height), abs(playerposx % width), character1);
-			move(abs(playerposy % height), abs(playerposx % width));
+			mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 		}
 
 		refresh();
