@@ -6,14 +6,28 @@
 #include <iostream>
 using namespace std;
 
+struct screenindex
+{
+	char *name;
+};
+
 int main()
 {
 	srand(time(NULL));
 	int width = 80, height = 24, ch;
-	int screenx = 0, screeny = 0;
+	int screenx = 0, screeny = 0, index1 = 0;
 	int playeramount = 0;
 	int enemiesamount = 0;
 	int playerindex1 = 0;
+	const int screenindexcount1 = 10;
+	struct screenindex screenindex[screenindexcount1];
+	int screenindexamount = 0;
+	
+	screenindex[screenindexamount].name = "Heads";
+	screenindexamount++;
+	screenindex[screenindexamount].name = "Arms";
+	screenindexamount++;
+	screenindex[screenindexamount].name = "Legs";
 	
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
@@ -77,6 +91,8 @@ int main()
 			screeny++;
 			mvprintw(screeny, screenx, "Press ? to view this help");
 			screeny++;
+			mvprintw(screeny, screenx, "Press b to view body parts (not fully implemented)");
+			screeny++;
 			mvprintw(screeny, screenx, "Press a key to exit this help");
 
 			refresh();
@@ -86,6 +102,55 @@ int main()
 			clear();
 
 			screeny = 0;
+		}
+
+		if(ch == 'b')
+		{
+			ch = 'n';
+			index1 = 0;
+			
+			while(ch != 'b')
+			{
+				clear();
+				mvprintw(screeny, screenx, screenindex[index1].name);
+				screeny++;
+				mvprintw(screeny, screenx, "Press b to exit this menu");
+				screeny++;
+				mvprintw(screeny, screenx, "Press a to move to previous screen");
+				screeny++;
+				mvprintw(screeny, screenx, "Press d to move to next screen");
+				refresh();
+
+				switch(ch = getch())
+				{
+					case 'd':
+					{
+						index1++;
+						screeny = 0;
+
+						if(index1 > screenindexamount)
+						{
+							index1 = 0;
+						}
+					}
+					break;
+
+					case 'a':
+					{
+						index1--;
+						screeny = 0;
+
+						if(index1 < 0)
+						{
+							index1 = screenindexamount;
+						}
+					}
+				}
+			}
+
+			screeny = 0;
+			index1 = 0;
+			clear();
 		}
 
 		if(player[playerindex1].playerposx < 0 && player[playerindex1].playerposy < 0)
