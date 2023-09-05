@@ -1,4 +1,9 @@
-#include <ncurses.h>
+#if defined(_WIN32)
+	#include <curses.h>
+#else
+	#include <ncurses.h>
+#endif
+
 #include <stdlib.h>
 #include <time.h>
 #include "playercharacter.h"
