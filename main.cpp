@@ -33,6 +33,10 @@ int main()
 	screenindex[screenindexamount].name = "Arms";
 	screenindexamount++;
 	screenindex[screenindexamount].name = "Legs";
+	screenindexamount++;
+	screenindex[screenindexamount].name = "Necks";
+	screenindexamount++;
+	screenindex[screenindexamount].name = "Shoulders";
 	
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
