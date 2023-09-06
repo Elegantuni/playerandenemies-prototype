@@ -37,7 +37,11 @@ int main()
 	screenindex[screenindexamount].name = "Necks";
 	screenindexamount++;
 	screenindex[screenindexamount].name = "Shoulders";
-	
+	screenindexamount++;
+	screenindex[screenindexamount].name = "Backs";
+	screenindexamount++;
+	screenindex[screenindexamount].name = "Chests";
+		
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
 		printf("Enter a amount for the amount of enemies (50-100000): ");
