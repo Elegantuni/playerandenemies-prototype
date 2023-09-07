@@ -28,19 +28,19 @@ int main()
 	struct screenindex screenindex[screenindexcount1];
 	int screenindexamount = 0;
 	
-	screenindex[screenindexamount].name = "Heads";
+	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
-	screenindex[screenindexamount].name = "Arms";
+	screenindex[screenindexamount].name = const_cast<char *>("Arms");
 	screenindexamount++;
-	screenindex[screenindexamount].name = "Legs";
+	screenindex[screenindexamount].name = const_cast<char *>("Legs");
 	screenindexamount++;
-	screenindex[screenindexamount].name = "Necks";
+	screenindex[screenindexamount].name = const_cast<char *>("Necks");
 	screenindexamount++;
-	screenindex[screenindexamount].name = "Shoulders";
+	screenindex[screenindexamount].name = const_cast<char *>("Shoulders");
 	screenindexamount++;
-	screenindex[screenindexamount].name = "Backs";
+	screenindex[screenindexamount].name = const_cast<char *>("Backs");
 	screenindexamount++;
-	screenindex[screenindexamount].name = "Chests";
+	screenindex[screenindexamount].name = const_cast<char *>("Chests");
 		
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
@@ -49,13 +49,17 @@ int main()
 		cin >> enemiesamount;
 	}
 
-	playeramount = ceil(enemiesamount / 2);
+	playeramount = int(ceil(enemiesamount / 2));
 
 	const int playeramountreal = playeramount;
-	
-	struct playercharacter player[playeramountreal];
 
-	player[playerindex1].character1 = "@";
+#if !defined(_WIN32)
+	struct playercharacter player[playeramountreal];
+#else
+	struct playercharacter* player = (struct playercharacter *) malloc(sizeof(struct playercharacter) * playeramountreal);
+#endif
+
+	player[playerindex1].character1 = const_cast<char *>("@");
 	player[playerindex1].playerposx = rand() % width;
 	player[playerindex1].playerposy = rand() % height;
 	
