@@ -6,7 +6,7 @@ struct playercharacter
 	char *character1;
 	int playerposx;
 	int playerposy;
+	int playerindex;
 };
 
 #endif
-

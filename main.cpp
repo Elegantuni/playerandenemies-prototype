@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "playercharacter.h"
+#include "enemiescharacter.h"
 #include <math.h>
 #include <iostream>
 using namespace std;
@@ -24,9 +25,13 @@ int main()
 	int playeramount = 0;
 	int enemiesamount = 0;
 	int playerindex1 = 0;
+	int enemiesindex1 = 0;
 	const int screenindexcount1 = 10;
+	const int screenindexcount2 = 10;
 	struct screenindex screenindex[screenindexcount1];
+	struct screenindex screenindexenemies[screenindexcount2];
 	int screenindexamount = 0;
+	int screenindexamount2 = 0;
 	
 	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
@@ -41,7 +46,21 @@ int main()
 	screenindex[screenindexamount].name = const_cast<char *>("Backs");
 	screenindexamount++;
 	screenindex[screenindexamount].name = const_cast<char *>("Chests");
-		
+	
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Heads");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Arms");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Legs");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Necks");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Shoulders");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Backs");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Chests");
+
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
 		printf("Enter a amount for the amount of enemies (50-100000): ");
@@ -108,7 +127,9 @@ int main()
 			screeny++;
 			mvprintw(screeny, screenx, "Press ? to view this help");
 			screeny++;
-			mvprintw(screeny, screenx, "Press b to view body parts (not fully implemented)");
+			mvprintw(screeny, screenx, "Press b to view body parts for player(not fully implemented)");
+			screeny++;
+			mvprintw(screeny, screenx, "Press v to view body parts for enemy in line of sight");
 			screeny++;
 			mvprintw(screeny, screenx, "Press a key to exit this help");
 
@@ -129,6 +150,8 @@ int main()
 			while(ch != 'b')
 			{
 				clear();
+				mvprintw(screeny, screenx, "Player %d", playerindex1 + 1);
+				screeny++;
 				mvprintw(screeny, screenx, screenindex[index1].name);
 				screeny++;
 				mvprintw(screeny, screenx, "Press b to exit this menu");
@@ -160,6 +183,57 @@ int main()
 						if(index1 < 0)
 						{
 							index1 = screenindexamount;
+						}
+					}
+				}
+			}
+
+			screeny = 0;
+			index1 = 0;
+			clear();
+		}
+
+		if (ch == 'v')
+		{
+			ch = 'n';
+			index1 = 0;
+
+			while (ch != 'v')
+			{
+				clear();
+				mvprintw(screeny, screenx, "Enemies %d", enemiesindex1 + 1);
+				screeny++;
+				mvprintw(screeny, screenx, screenindexenemies[index1].name);
+				screeny++;
+				mvprintw(screeny, screenx, "Press v to exit this menu");
+				screeny++;
+				mvprintw(screeny, screenx, "Press a to move to previous screen");
+				screeny++;
+				mvprintw(screeny, screenx, "Press d to move to next screen");
+				refresh();
+
+				switch (ch = getch())
+				{
+					case 'd':
+					{
+						index1++;
+						screeny = 0;
+
+						if (index1 > screenindexamount2)
+						{
+							index1 = 0;
+						}
+					}
+					break;
+
+					case 'a':
+					{
+						index1--;
+						screeny = 0;
+
+						if (index1 < 0)
+						{
+							index1 = screenindexamount2;
 						}
 					}
 				}
