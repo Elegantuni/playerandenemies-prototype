@@ -32,7 +32,7 @@ int main()
 	struct screenindex screenindexenemies[screenindexcount2];
 	int screenindexamount = 0;
 	int screenindexamount2 = 0;
-	
+
 	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
 	screenindex[screenindexamount].name = const_cast<char *>("Arms");
@@ -72,19 +72,65 @@ int main()
 
 	const int playeramountreal = playeramount;
 
+	const int enemiesamountreal = enemiesamount;
+
 #if !defined(_WIN32)
 	struct playercharacter player[playeramountreal];
+
+	struct enemiescharacter enemy[enemiesamountreal];
 #else
 	struct playercharacter* player = (struct playercharacter *) malloc(sizeof(struct playercharacter) * playeramountreal);
+
+	struct enemiescharacter* enemy = (struct enemiescharacter *) malloc(sizeof(struct enemiescharacter) * enemiesamountreal);
 #endif
 
-	player[playerindex1].character1 = const_cast<char *>("@");
 	player[playerindex1].playerposx = rand() % width;
 	player[playerindex1].playerposy = rand() % height;
+
+	enemy[enemiesindex1].enemiesposx = rand() % width;
+	enemy[enemiesindex1].enemiesposy = rand() % height;
+	
+	FILE* fp1 = fopen("Data/PlayerCharacter.txt", "r");
+
+	if (fp1 == NULL)
+	{
+		cout << "Can't open Data/PlayerCharacter.txt" << endl;
+
+		return 0;
+	}
+
+	int characternow1 = fgetc(fp1);
+	char characternow2 = (char)characternow1;
+
+	player[playerindex1].character1[0] = characternow2;
+	player[playerindex1].character1[1] = '\0';
+
+	FILE* fp2 = fopen("Data/EnemyCharacterDwarf.txt", "r");
+	
+	if (fp2 == NULL)
+	{
+		cout << "Can't open Data/EnemyCharacterDwarf.txt" << endl;
+
+		return 0;
+	}
+
+	int characternow3 = fgetc(fp2);
+	char characternow4 = (char)characternow3;
+
+	enemy[enemiesindex1].character1[0] = characternow4;
+	enemy[enemiesindex1].character1[1] = '\0';
+
+	while(player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
+	{
+		enemy[enemiesindex1].enemiesposx = rand() % width;
+		enemy[enemiesindex1].enemiesposy = rand() % height;
+	}
 	
 	initscr();
 	noecho();
 	cbreak();
+
+	mvprintw(enemy[enemiesindex1].enemiesposy, enemy[enemiesindex1].enemiesposx, enemy[enemiesindex1].character1);
 	
 	mvprintw(player[playerindex1].playerposy, player[playerindex1].playerposx, player[playerindex1].character1);
 	move(player[playerindex1].playerposy, player[playerindex1].playerposx);
@@ -244,6 +290,8 @@ int main()
 			clear();
 		}
 
+		mvprintw(enemy[enemiesindex1].enemiesposy, enemy[enemiesindex1].enemiesposx, enemy[enemiesindex1].character1);
+
 		if(player[playerindex1].playerposx < 0 && player[playerindex1].playerposy < 0)
 		{
 			mvprintw(height - abs(player[playerindex1].playerposy % height) + 1, width - abs(player[playerindex1].playerposx % width) + 1, player[playerindex1].character1);
@@ -272,4 +320,3 @@ int main()
 
 	return 0;
 }
-

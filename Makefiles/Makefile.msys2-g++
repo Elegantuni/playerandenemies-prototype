@@ -1,6 +1,0 @@
-playerandenemies:
-	g++ -I/mingw64/include/PDCurses-3.9 -o playerandenemies main.cpp -lm /mingw64/lib/pdcurses.a
-
-clean:
-	rm -f playerandenemies
-

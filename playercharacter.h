@@ -3,7 +3,7 @@
 
 struct playercharacter
 {
-	char *character1;
+	char character1[2];
 	int playerposx;
 	int playerposy;
 	int playerindex;

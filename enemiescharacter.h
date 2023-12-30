@@ -3,7 +3,7 @@
 
 struct enemiescharacter
 {
-	char* character1;
+	char character1[2];
 	int enemiesposx;
 	int enemiesposy;
 	int enemiesindex;
