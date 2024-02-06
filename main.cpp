@@ -17,6 +17,17 @@ struct screenindex
 	char *name;
 };
 
+struct listtext
+{
+	char *textheads[10];
+	char *textarms[10];
+	char *textlegs[10];
+	char *textnecks[10];
+	char *textshoulders[10];
+	char *textbacks[10];
+	char *textchests[10];
+};
+
 int main()
 {
 	srand(time(NULL));
@@ -83,6 +94,9 @@ int main()
 
 	struct enemiescharacter* enemy = (struct enemiescharacter *) malloc(sizeof(struct enemiescharacter) * enemiesamountreal);
 #endif
+
+	struct listtext playerlist[playeramountreal];
+	struct listtext enemieslist[enemiesamountreal];
 
 	player[playerindex1].playerposx = rand() % width;
 	player[playerindex1].playerposy = rand() % height;
@@ -190,105 +204,123 @@ int main()
 
 		if(ch == 'b')
 		{
-			ch = 'n';
-			index1 = 0;
+			int indexpos1 = 0;
+			int rowpos1 = 0;
+			int itempos1 = 0;
+
+			playerlist[playerindex1].textheads[0] = const_cast<char *>("Head 1");
+			rowpos1++;
+			playerlist[playerindex1].textheads[1] = const_cast<char *>("Head 2");
 			
-			while(ch != 'b')
+			if(itempos1 == 0)
 			{
-				clear();
-				mvprintw(screeny, screenx, "Player %d", playerindex1 + 1);
-				screeny++;
-				mvprintw(screeny, screenx, screenindex[index1].name);
-				screeny++;
-				mvprintw(screeny, screenx, "Press b to exit this menu");
-				screeny++;
-				mvprintw(screeny, screenx, "Press a to move to previous screen");
-				screeny++;
-				mvprintw(screeny, screenx, "Press d to move to next screen");
-				refresh();
-
-				switch(ch = getch())
-				{
-					case 'd':
-					{
-						index1++;
-						screeny = 0;
-
-						if(index1 > screenindexamount)
-						{
-							index1 = 0;
-						}
-					}
-					break;
-
-					case 'a':
-					{
-						index1--;
-						screeny = 0;
-
-						if(index1 < 0)
-						{
-							index1 = screenindexamount;
-						}
-					}
-				}
+    			mvprintw(0, 0, "Player Head");
+				mvprintw(1, 0, playerlist[playerindex1].textheads[indexpos1]);
 			}
+			refresh();
 
-			screeny = 0;
-			index1 = 0;
-			clear();
+			while((ch = getch()) != 'p')
+  			{
+    			switch (ch)
+    			{
+      				case 'e':
+        			if (indexpos1 > 0)
+    				{
+      					indexpos1--;
+						if(indexpos1 < 0)
+						{
+							indexpos1 = 0;
+						}
+    				}
+					clear();
+					if(itempos1 == 0)
+					{
+    					mvprintw(0, 0, "Player Head");
+						mvprintw(1, 0, playerlist[playerindex1].textheads[indexpos1]);
+					}
+					refresh();
+    				break;
+      				case 'd':
+    				if (indexpos1 < rowpos1)
+    				{
+      					indexpos1++;
+						if(indexpos1 > rowpos1)
+						{
+							indexpos1--;
+						}
+    				}
+					clear();
+					if(itempos1 == 0)
+					{
+    					mvprintw(0, 0, "Player Head");
+						mvprintw(1, 0, playerlist[playerindex1].textheads[indexpos1]);
+					}
+					refresh();
+    				break;
+     			}
+			}
 		}
 
 		if (ch == 'v')
 		{
-			ch = 'n';
-			index1 = 0;
+			int indexpos1 = 0;
+			int rowpos1 = 0;
+			int itempos1 = 0;
 
-			while (ch != 'v')
+			enemieslist[enemiesindex1].textheads[0] = const_cast<char *>("Head 1");
+			rowpos1++;
+			enemieslist[enemiesindex1].textheads[1] = const_cast<char *>("Head 2");
+
+			if(itempos1 == 0)
 			{
-				clear();
-				mvprintw(screeny, screenx, "Enemies %d", enemiesindex1 + 1);
-				screeny++;
-				mvprintw(screeny, screenx, screenindexenemies[index1].name);
-				screeny++;
-				mvprintw(screeny, screenx, "Press v to exit this menu");
-				screeny++;
-				mvprintw(screeny, screenx, "Press a to move to previous screen");
-				screeny++;
-				mvprintw(screeny, screenx, "Press d to move to next screen");
-				refresh();
-
-				switch (ch = getch())
-				{
-					case 'd':
-					{
-						index1++;
-						screeny = 0;
-
-						if (index1 > screenindexamount2)
-						{
-							index1 = 0;
-						}
-					}
-					break;
-
-					case 'a':
-					{
-						index1--;
-						screeny = 0;
-
-						if (index1 < 0)
-						{
-							index1 = screenindexamount2;
-						}
-					}
-				}
+    			mvprintw(0, 0, "Enemies Head");
+				mvprintw(1, 0, enemieslist[enemiesindex1].textheads[indexpos1]);
 			}
+			refresh();
 
-			screeny = 0;
-			index1 = 0;
-			clear();
+			while((ch = getch()) != 'p')
+  			{
+    			switch (ch)
+    			{
+      				case 'e':
+        			if (indexpos1 > 0)
+    				{
+      					indexpos1--;
+						if(indexpos1 < 0)
+						{
+							indexpos1 = 0;
+						}
+    				}
+					clear();
+					if(itempos1 == 0)
+					{
+    					mvprintw(0, 0, "Enemies Head");
+						mvprintw(1, 0, enemieslist[enemiesindex1].textheads[indexpos1]);
+					}
+					refresh();
+    				break;
+      				case 'd':
+    				if (indexpos1 < rowpos1)
+    				{
+      					indexpos1++;
+						if(indexpos1 > rowpos1)
+						{
+							indexpos1--;
+						}
+    				}
+					clear();
+					if(itempos1 == 0)
+					{
+    					mvprintw(0, 0, "Enemies Head");
+						mvprintw(1, 0, enemieslist[enemiesindex1].textheads[indexpos1]);
+					}
+					refresh();
+    				break;
+     			}
+			}
 		}
+
+		clear();
 
 		mvprintw(enemy[enemiesindex1].enemiesposy, enemy[enemiesindex1].enemiesposx, enemy[enemiesindex1].character1);
 
