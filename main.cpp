@@ -216,10 +216,11 @@ int main()
 			{
 					mvprintw(0, 0, "Press e to move up");
 					mvprintw(1, 0, "Press d to move down");
-    				mvprintw(2, 0, "Player Head");
+					mvprintw(2, 0, "Press p to exit this screen");
+    				mvprintw(3, 0, "Player Head");
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+3, 0, playerlist[playerindex1].textheads[i]);
+					mvprintw(i%24+4, 0, playerlist[playerindex1].textheads[i]);
 				}
 			}
 			refresh();
@@ -242,10 +243,11 @@ int main()
 					{
     					mvprintw(0, 0, "Press e to move up");
 						mvprintw(1, 0, "Press d to move down");
-    					mvprintw(2, 0, "Player Head");
+						mvprintw(2, 0, "Press p to exit this screen");
+    					mvprintw(3, 0, "Player Head");
 						for(int i = 0; i <= indexpos1; i++)
                                 		{
-                                        		mvprintw(i%24+3, 0, playerlist[playerindex1].textheads[i]);
+                                        		mvprintw(i%24+4, 0, playerlist[playerindex1].textheads[i]);
                                 		}
 					}
 					refresh();
@@ -264,10 +266,11 @@ int main()
 					{
     					mvprintw(0, 0, "Press e to move up");
 						mvprintw(1, 0, "Press d to move down");
-    					mvprintw(2, 0, "Player Head");
+						mvprintw(2, 0, "Press p to exit this screen");
+    					mvprintw(3, 0, "Player Head");
 						for(int i = 0; i <= indexpos1; i++)
                                 		{
-                                        		mvprintw(i%24+3, 0, playerlist[playerindex1].textheads[i]);
+                                        		mvprintw(i%24+4, 0, playerlist[playerindex1].textheads[i]);
                                 		}
 					}
 					refresh();
@@ -290,10 +293,11 @@ int main()
 			{
 					mvprintw(0, 0, "Press e to move up");
 					mvprintw(1, 0, "Press d to move down");
-    				mvprintw(2, 0, "Enemies Head");
+					mvprintw(2, 0, "Press p to exit this screen");
+    				mvprintw(3, 0, "Enemies Head");
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+3, 0, enemieslist[enemiesindex1].textheads[i]);
+					mvprintw(i%24+4, 0, enemieslist[enemiesindex1].textheads[i]);
 				}
 			}
 			refresh();
@@ -316,10 +320,11 @@ int main()
 					{
     					mvprintw(0, 0, "Press e to move up");
 						mvprintw(1, 0, "Press d to move down");
-    					mvprintw(2, 0, "Enemies Head");
+						mvprintw(2, 0, "Press p to exit this screen");
+    					mvprintw(3, 0, "Enemies Head");
 						for(int i = 0; i <= indexpos1; i++)
                                 		{
-                                        		mvprintw(i%24+3, 0, enemieslist[enemiesindex1].textheads[i]);
+                                        		mvprintw(i%24+4, 0, enemieslist[enemiesindex1].textheads[i]);
                                 		}
 					}
 					refresh();
@@ -338,10 +343,11 @@ int main()
 					{
     					mvprintw(0, 0, "Press e to move up");
 						mvprintw(1, 0, "Press d to move down");
-    					mvprintw(2, 0, "Enemies Head");
+						mvprintw(2, 0, "Press p to exit this screen");
+    					mvprintw(3, 0, "Enemies Head");
 						for(int i = 0; i <= indexpos1; i++)
                                 		{
-                                        		mvprintw(i%24+3, 0, enemieslist[enemiesindex1].textheads[i]);
+                                        		mvprintw(i%24+4, 0, enemieslist[enemiesindex1].textheads[i]);
                                 		}
 					}
 					refresh();
