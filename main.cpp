@@ -95,8 +95,15 @@ int main()
 	struct enemiescharacter* enemy = (struct enemiescharacter *) malloc(sizeof(struct enemiescharacter) * enemiesamountreal);
 #endif
 
+#if !defined(_WIN32)
 	struct listtext playerlist[playeramountreal];
+
 	struct listtext enemieslist[enemiesamountreal];
+#else
+	struct listtext* playerlist = (struct listtext *) malloc(sizeof(struct listtext) * playeramountreal);
+
+	struct listtext* enemieslist = (struct listtext *) malloc(sizeof(struct listtext) * enemiesamountreal);
+#endif
 
 	player[playerindex1].playerposx = rand() % width;
 	player[playerindex1].playerposy = rand() % height;
