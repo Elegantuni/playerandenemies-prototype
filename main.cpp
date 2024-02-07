@@ -364,21 +364,53 @@ int main()
 		if(ch == 'a')
 		{
 			player[playerindex1].playerposx--;
+
+			for(int i = 0; i < enemiesamountreal; i++)
+			{
+				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+				{
+					player[playerindex1].playerposx++;
+				}
+			}
 		}
 
 		if(ch == 'd')
 		{
 			player[playerindex1].playerposx++;
+
+			for(int i = 0; i < enemiesamountreal; i++)
+			{
+				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+				{
+					player[playerindex1].playerposx--;
+				}
+			}
 		}
 
 		if(ch == 'w')
 		{
 			player[playerindex1].playerposy--;
+
+			for(int i = 0; i < enemiesamountreal; i++)
+			{
+				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+				{
+					player[playerindex1].playerposy++;
+				}
+			}
 		}
 
 		if(ch == 's')
 		{
 			player[playerindex1].playerposy++;
+
+			for(int i = 0; i < enemiesamountreal; i++)
+			{
+				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+				{
+					player[playerindex1].playerposy--;
+				}
+			}
 		}
 
 		if(ch == '?')
