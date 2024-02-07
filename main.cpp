@@ -109,11 +109,9 @@ int main()
 
 	player[playerindex1].playerposx = rand() % width;
 	player[playerindex1].playerposy = rand() % height;
-	player[playerindex1].weapons[0] = const_cast<char*>("gun");
 
 	enemy[enemiesindex1].enemiesposx = rand() % width;
 	enemy[enemiesindex1].enemiesposy = rand() % height;
-	enemy[enemiesindex1].weapons[0] = const_cast<char*>("gun");
 
 	FILE* fp1 = fopen("Data/PlayerCharacter.txt", "r");
 
