@@ -7,6 +7,7 @@ struct playercharacter
 	int playerposx;
 	int playerposy;
 	int playerindex;
+	char *weapon[10];
 };
 
 #endif

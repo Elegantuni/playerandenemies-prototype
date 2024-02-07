@@ -7,6 +7,7 @@ struct enemiescharacter
 	int enemiesposx;
 	int enemiesposy;
 	int enemiesindex;
+	char *weapons[10];
 };
 
 #endif
