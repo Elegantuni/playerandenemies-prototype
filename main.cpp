@@ -8,6 +8,7 @@
 #include <time.h>
 #include "playercharacter.h"
 #include "enemiescharacter.h"
+#include "typeofobjects.h"
 #include <math.h>
 #include <iostream>
 using namespace std;
@@ -113,6 +114,14 @@ int main()
 	enemy[enemiesindex1].enemiesposx = rand() % width;
 	enemy[enemiesindex1].enemiesposy = rand() % height;
 
+	player[playerindex1].playerobject.player = 1;
+
+	player[playerindex1].playerobject.enemy = 0;
+
+	enemy[enemiesindex1].enemiesobject.enemy = 1;
+
+	enemy[enemiesindex1].enemiesobject.player = 0;
+	
 	FILE* fp1 = fopen("Data/PlayerCharacter.txt", "r");
 
 	if (fp1 == NULL)
