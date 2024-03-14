@@ -18,16 +18,9 @@ struct screenindex
 	char *name;
 };
 
-struct listtext
-{
-	char *textheads[10];
-	char *textarms[10];
-	char *textlegs[10];
-	char *textnecks[10];
-	char *textshoulders[10];
-	char *textbacks[10];
-	char *textchests[10];
-};
+#if defined(__OpenBSD__)
+#define rand() arc4random()
+#endif
 
 int main()
 {
@@ -60,7 +53,9 @@ int main()
 	screenindex[screenindexamount].name = const_cast<char *>("Backs");
 	screenindexamount++;
 	screenindex[screenindexamount].name = const_cast<char *>("Chests");
-	
+	screenindexamount++;
+	screenindex[screenindexamount].name = const_cast<char *>("Toe");
+
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Heads");
 	screenindexamount2++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Arms");
@@ -74,6 +69,8 @@ int main()
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Backs");
 	screenindexamount2++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Chests");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Toe");
 
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
@@ -96,16 +93,6 @@ int main()
 	struct playercharacter* player = (struct playercharacter *) malloc(sizeof(struct playercharacter) * playeramountreal);
 
 	struct enemiescharacter* enemy = (struct enemiescharacter *) malloc(sizeof(struct enemiescharacter) * enemiesamountreal);
-#endif
-
-#if !defined(_WIN32)
-	struct listtext playerlist[playeramountreal];
-
-	struct listtext enemieslist[enemiesamountreal];
-#else
-	struct listtext* playerlist = (struct listtext *) malloc(sizeof(struct listtext) * playeramountreal);
-
-	struct listtext* enemieslist = (struct listtext *) malloc(sizeof(struct listtext) * enemiesamountreal);
 #endif
 
 	player[playerindex1].playerposx = rand() % width;
@@ -157,194 +144,218 @@ int main()
 	
 	if (rowpos1 == 3)
 	{
-		playerlist[playerindex1].textheads[0] = const_cast<char*>("Head 1");
-		playerlist[playerindex1].textheads[1] = const_cast<char*>("Head 2");
-		playerlist[playerindex1].textheads[2] = const_cast<char*>("Head 3");
-		playerlist[playerindex1].textheads[3] = const_cast<char*>("Head 4");
-		playerlist[playerindex1].textarms[0] = const_cast<char*>("Arm 1");
-		playerlist[playerindex1].textarms[1] = const_cast<char*>("Arm 2");
-		playerlist[playerindex1].textarms[2] = const_cast<char*>("Arm 3");
-		playerlist[playerindex1].textarms[3] = const_cast<char*>("Arm 4");
-		playerlist[playerindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		playerlist[playerindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		playerlist[playerindex1].textlegs[2] = const_cast<char*>("Leg 3");
-		playerlist[playerindex1].textlegs[3] = const_cast<char*>("Leg 4");
-		playerlist[playerindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		playerlist[playerindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		playerlist[playerindex1].textnecks[2] = const_cast<char*>("Neck 3");
-		playerlist[playerindex1].textnecks[3] = const_cast<char*>("Neck 4");
-		playerlist[playerindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		playerlist[playerindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		playerlist[playerindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
-		playerlist[playerindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
-		playerlist[playerindex1].textbacks[0] = const_cast<char*>("Back 1");
-		playerlist[playerindex1].textbacks[1] = const_cast<char*>("Back 2");
-		playerlist[playerindex1].textbacks[2] = const_cast<char*>("Back 3");
-		playerlist[playerindex1].textbacks[3] = const_cast<char*>("Back 4");
-		playerlist[playerindex1].textchests[0] = const_cast<char*>("Chest 1");
-		playerlist[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
-		playerlist[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
-		playerlist[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
+		player[playerindex1].textheads[0] = const_cast<char*>("Head 1");
+		player[playerindex1].textheads[1] = const_cast<char*>("Head 2");
+		player[playerindex1].textheads[2] = const_cast<char*>("Head 3");
+		player[playerindex1].textheads[3] = const_cast<char*>("Head 4");
+		player[playerindex1].textarms[0] = const_cast<char*>("Arm 1");
+		player[playerindex1].textarms[1] = const_cast<char*>("Arm 2");
+		player[playerindex1].textarms[2] = const_cast<char*>("Arm 3");
+		player[playerindex1].textarms[3] = const_cast<char*>("Arm 4");
+		player[playerindex1].textlegs[0] = const_cast<char*>("Leg 1");
+		player[playerindex1].textlegs[1] = const_cast<char*>("Leg 2");
+		player[playerindex1].textlegs[2] = const_cast<char*>("Leg 3");
+		player[playerindex1].textlegs[3] = const_cast<char*>("Leg 4");
+		player[playerindex1].textnecks[0] = const_cast<char*>("Neck 1");
+		player[playerindex1].textnecks[1] = const_cast<char*>("Neck 2");
+		player[playerindex1].textnecks[2] = const_cast<char*>("Neck 3");
+		player[playerindex1].textnecks[3] = const_cast<char*>("Neck 4");
+		player[playerindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+		player[playerindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+		player[playerindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
+		player[playerindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
+		player[playerindex1].textbacks[0] = const_cast<char*>("Back 1");
+		player[playerindex1].textbacks[1] = const_cast<char*>("Back 2");
+		player[playerindex1].textbacks[2] = const_cast<char*>("Back 3");
+		player[playerindex1].textbacks[3] = const_cast<char*>("Back 4");
+		player[playerindex1].textchests[0] = const_cast<char*>("Chest 1");
+		player[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
+		player[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
+		player[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
+		player[playerindex1].texttoes[0] = const_cast<char*>("Toe 1");
+		player[playerindex1].texttoes[1] = const_cast<char*>("Toe 2");
+		player[playerindex1].texttoes[2] = const_cast<char*>("Toe 3");
+		player[playerindex1].texttoes[3] = const_cast<char*>("Toe 4");
 	}
 
 	if (rowpos1 == 4)
 	{
-		playerlist[playerindex1].textheads[0] = const_cast<char*>("Head 1");
-		playerlist[playerindex1].textheads[1] = const_cast<char*>("Head 2");
-		playerlist[playerindex1].textheads[2] = const_cast<char*>("Head 3");
-		playerlist[playerindex1].textheads[3] = const_cast<char*>("Head 4");
-		playerlist[playerindex1].textheads[4] = const_cast<char*>("Head 5");
-		playerlist[playerindex1].textarms[0] = const_cast<char*>("Arm 1");
-		playerlist[playerindex1].textarms[1] = const_cast<char*>("Arm 2");
-		playerlist[playerindex1].textarms[2] = const_cast<char*>("Arm 3");
-		playerlist[playerindex1].textarms[3] = const_cast<char*>("Arm 4");
-		playerlist[playerindex1].textarms[4] = const_cast<char*>("Arm 5");
-		playerlist[playerindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		playerlist[playerindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		playerlist[playerindex1].textlegs[2] = const_cast<char*>("Leg 3");
-		playerlist[playerindex1].textlegs[3] = const_cast<char*>("Leg 4");
-		playerlist[playerindex1].textlegs[4] = const_cast<char*>("Leg 5");
-		playerlist[playerindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		playerlist[playerindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		playerlist[playerindex1].textnecks[2] = const_cast<char*>("Neck 3");
-		playerlist[playerindex1].textnecks[3] = const_cast<char*>("Neck 4");
-		playerlist[playerindex1].textnecks[4] = const_cast<char*>("Neck 5");
-		playerlist[playerindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		playerlist[playerindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		playerlist[playerindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
-		playerlist[playerindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
-		playerlist[playerindex1].textshoulders[4] = const_cast<char*>("Shoulder 5");
-		playerlist[playerindex1].textbacks[0] = const_cast<char*>("Back 1");
-		playerlist[playerindex1].textbacks[1] = const_cast<char*>("Back 2");
-		playerlist[playerindex1].textbacks[2] = const_cast<char*>("Back 3");
-		playerlist[playerindex1].textbacks[3] = const_cast<char*>("Back 4");
-		playerlist[playerindex1].textbacks[4] = const_cast<char*>("Back 5");
-		playerlist[playerindex1].textchests[0] = const_cast<char*>("Chest 1");
-		playerlist[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
-		playerlist[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
-		playerlist[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
-		playerlist[playerindex1].textchests[4] = const_cast<char*>("Chest 5");
+		player[playerindex1].textheads[0] = const_cast<char*>("Head 1");
+		player[playerindex1].textheads[1] = const_cast<char*>("Head 2");
+		player[playerindex1].textheads[2] = const_cast<char*>("Head 3");
+		player[playerindex1].textheads[3] = const_cast<char*>("Head 4");
+		player[playerindex1].textheads[4] = const_cast<char*>("Head 5");
+		player[playerindex1].textarms[0] = const_cast<char*>("Arm 1");
+		player[playerindex1].textarms[1] = const_cast<char*>("Arm 2");
+		player[playerindex1].textarms[2] = const_cast<char*>("Arm 3");
+		player[playerindex1].textarms[3] = const_cast<char*>("Arm 4");
+		player[playerindex1].textarms[4] = const_cast<char*>("Arm 5");
+		player[playerindex1].textlegs[0] = const_cast<char*>("Leg 1");
+		player[playerindex1].textlegs[1] = const_cast<char*>("Leg 2");
+		player[playerindex1].textlegs[2] = const_cast<char*>("Leg 3");
+		player[playerindex1].textlegs[3] = const_cast<char*>("Leg 4");
+		player[playerindex1].textlegs[4] = const_cast<char*>("Leg 5");
+		player[playerindex1].textnecks[0] = const_cast<char*>("Neck 1");
+		player[playerindex1].textnecks[1] = const_cast<char*>("Neck 2");
+		player[playerindex1].textnecks[2] = const_cast<char*>("Neck 3");
+		player[playerindex1].textnecks[3] = const_cast<char*>("Neck 4");
+		player[playerindex1].textnecks[4] = const_cast<char*>("Neck 5");
+		player[playerindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+		player[playerindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+		player[playerindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
+		player[playerindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
+		player[playerindex1].textshoulders[4] = const_cast<char*>("Shoulder 5");
+		player[playerindex1].textbacks[0] = const_cast<char*>("Back 1");
+		player[playerindex1].textbacks[1] = const_cast<char*>("Back 2");
+		player[playerindex1].textbacks[2] = const_cast<char*>("Back 3");
+		player[playerindex1].textbacks[3] = const_cast<char*>("Back 4");
+		player[playerindex1].textbacks[4] = const_cast<char*>("Back 5");
+		player[playerindex1].textchests[0] = const_cast<char*>("Chest 1");
+		player[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
+		player[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
+		player[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
+		player[playerindex1].textchests[4] = const_cast<char*>("Chest 5");
+		player[playerindex1].texttoes[0] = const_cast<char*>("Toe 1");
+		player[playerindex1].texttoes[1] = const_cast<char*>("Toe 2");
+		player[playerindex1].texttoes[2] = const_cast<char*>("Toe 3");
+		player[playerindex1].texttoes[3] = const_cast<char*>("Toe 4");
+		player[playerindex1].texttoes[4] = const_cast<char*>("Toe 5");
 	}
 
 	if (rowpos1 == 5)
 	{
-		playerlist[playerindex1].textheads[0] = const_cast<char*>("Head 1");
-		playerlist[playerindex1].textheads[1] = const_cast<char*>("Head 2");
-		playerlist[playerindex1].textheads[2] = const_cast<char*>("Head 3");
-		playerlist[playerindex1].textheads[3] = const_cast<char*>("Head 4");
-		playerlist[playerindex1].textheads[4] = const_cast<char*>("Head 5");
-		playerlist[playerindex1].textheads[5] = const_cast<char*>("Head 6");
-		playerlist[playerindex1].textarms[0] = const_cast<char*>("Arm 1");
-		playerlist[playerindex1].textarms[1] = const_cast<char*>("Arm 2");
-		playerlist[playerindex1].textarms[2] = const_cast<char*>("Arm 3");
-		playerlist[playerindex1].textarms[3] = const_cast<char*>("Arm 4");
-		playerlist[playerindex1].textarms[4] = const_cast<char*>("Arm 5");
-		playerlist[playerindex1].textarms[5] = const_cast<char*>("Arm 6");
-		playerlist[playerindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		playerlist[playerindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		playerlist[playerindex1].textlegs[2] = const_cast<char*>("Leg 3");
-		playerlist[playerindex1].textlegs[3] = const_cast<char*>("Leg 4");
-		playerlist[playerindex1].textlegs[4] = const_cast<char*>("Leg 5");
-		playerlist[playerindex1].textlegs[5] = const_cast<char*>("Leg 6");
-		playerlist[playerindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		playerlist[playerindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		playerlist[playerindex1].textnecks[2] = const_cast<char*>("Neck 3");
-		playerlist[playerindex1].textnecks[3] = const_cast<char*>("Neck 4");
-		playerlist[playerindex1].textnecks[4] = const_cast<char*>("Neck 5");
-		playerlist[playerindex1].textnecks[5] = const_cast<char*>("Neck 6");
-		playerlist[playerindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		playerlist[playerindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		playerlist[playerindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
-		playerlist[playerindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
-		playerlist[playerindex1].textshoulders[4] = const_cast<char*>("Shoulder 5");
-		playerlist[playerindex1].textshoulders[5] = const_cast<char*>("Shoulder 6");
-		playerlist[playerindex1].textbacks[0] = const_cast<char*>("Back 1");
-		playerlist[playerindex1].textbacks[1] = const_cast<char*>("Back 2");
-		playerlist[playerindex1].textbacks[2] = const_cast<char*>("Back 3");
-		playerlist[playerindex1].textbacks[3] = const_cast<char*>("Back 4");
-		playerlist[playerindex1].textbacks[4] = const_cast<char*>("Back 5");
-		playerlist[playerindex1].textbacks[5] = const_cast<char*>("Back 6");
-		playerlist[playerindex1].textchests[0] = const_cast<char*>("Chest 1");
-                playerlist[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
-                playerlist[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
-                playerlist[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
-                playerlist[playerindex1].textchests[4] = const_cast<char*>("Chest 5");
-		playerlist[playerindex1].textchests[5] = const_cast<char*>("Chest 6");
+		player[playerindex1].textheads[0] = const_cast<char*>("Head 1");
+		player[playerindex1].textheads[1] = const_cast<char*>("Head 2");
+		player[playerindex1].textheads[2] = const_cast<char*>("Head 3");
+		player[playerindex1].textheads[3] = const_cast<char*>("Head 4");
+		player[playerindex1].textheads[4] = const_cast<char*>("Head 5");
+		player[playerindex1].textheads[5] = const_cast<char*>("Head 6");
+		player[playerindex1].textarms[0] = const_cast<char*>("Arm 1");
+		player[playerindex1].textarms[1] = const_cast<char*>("Arm 2");
+		player[playerindex1].textarms[2] = const_cast<char*>("Arm 3");
+		player[playerindex1].textarms[3] = const_cast<char*>("Arm 4");
+		player[playerindex1].textarms[4] = const_cast<char*>("Arm 5");
+		player[playerindex1].textarms[5] = const_cast<char*>("Arm 6");
+		player[playerindex1].textlegs[0] = const_cast<char*>("Leg 1");
+		player[playerindex1].textlegs[1] = const_cast<char*>("Leg 2");
+		player[playerindex1].textlegs[2] = const_cast<char*>("Leg 3");
+		player[playerindex1].textlegs[3] = const_cast<char*>("Leg 4");
+		player[playerindex1].textlegs[4] = const_cast<char*>("Leg 5");
+		player[playerindex1].textlegs[5] = const_cast<char*>("Leg 6");
+		player[playerindex1].textnecks[0] = const_cast<char*>("Neck 1");
+		player[playerindex1].textnecks[1] = const_cast<char*>("Neck 2");
+		player[playerindex1].textnecks[2] = const_cast<char*>("Neck 3");
+		player[playerindex1].textnecks[3] = const_cast<char*>("Neck 4");
+		player[playerindex1].textnecks[4] = const_cast<char*>("Neck 5");
+		player[playerindex1].textnecks[5] = const_cast<char*>("Neck 6");
+		player[playerindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+		player[playerindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+		player[playerindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
+		player[playerindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
+		player[playerindex1].textshoulders[4] = const_cast<char*>("Shoulder 5");
+		player[playerindex1].textshoulders[5] = const_cast<char*>("Shoulder 6");
+		player[playerindex1].textbacks[0] = const_cast<char*>("Back 1");
+		player[playerindex1].textbacks[1] = const_cast<char*>("Back 2");
+		player[playerindex1].textbacks[2] = const_cast<char*>("Back 3");
+		player[playerindex1].textbacks[3] = const_cast<char*>("Back 4");
+		player[playerindex1].textbacks[4] = const_cast<char*>("Back 5");
+		player[playerindex1].textbacks[5] = const_cast<char*>("Back 6");
+		player[playerindex1].textchests[0] = const_cast<char*>("Chest 1");
+                player[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
+                player[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
+                player[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
+                player[playerindex1].textchests[4] = const_cast<char*>("Chest 5");
+		player[playerindex1].textchests[5] = const_cast<char*>("Chest 6");
+		player[playerindex1].texttoes[0] = const_cast<char*>("Toe 1");
+		player[playerindex1].texttoes[1] = const_cast<char*>("Toe 2");
+		player[playerindex1].texttoes[2] = const_cast<char*>("Toe 3");
+		player[playerindex1].texttoes[3] = const_cast<char*>("Toe 4");
+		player[playerindex1].texttoes[4] = const_cast<char*>("Toe 5");
+		player[playerindex1].texttoes[5] = const_cast<char*>("Toe 6");
 	}
 
 	if (rowpos2 == 1)
 	{
-		enemieslist[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
-		enemieslist[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
-		enemieslist[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
-		enemieslist[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
-		enemieslist[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		enemieslist[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		enemieslist[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		enemieslist[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		enemieslist[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		enemieslist[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		enemieslist[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
-		enemieslist[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
-		enemieslist[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
-		enemieslist[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
+		enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
+		enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
+		enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
+		enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
+		enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
+		enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
+		enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
+		enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
+		enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+		enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+		enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
+		enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
+		enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
+		enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
+		enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
+		enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
 	}
 
 	if (rowpos2 == 2)
 	{
-		enemieslist[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
-		enemieslist[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
-		enemieslist[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
-		enemieslist[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
-		enemieslist[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
-		enemieslist[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
-		enemieslist[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		enemieslist[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		enemieslist[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
-		enemieslist[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		enemieslist[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		enemieslist[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
-		enemieslist[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		enemieslist[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		enemieslist[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
-		enemieslist[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
-		enemieslist[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
-		enemieslist[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
-		enemieslist[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
-		enemieslist[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
-		enemieslist[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
+		enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
+		enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
+		enemy[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
+		enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
+		enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
+		enemy[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
+		enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
+		enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
+		enemy[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
+		enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
+		enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
+		enemy[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
+		enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+		enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+		enemy[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
+		enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
+		enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
+		enemy[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
+		enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
+		enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
+		enemy[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
+		enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
+		enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
+		enemy[enemiesindex1].texttoes[2] = const_cast<char*>("Toe 3");
 	}
 
 	if (rowpos2 == 3)
 	{
-		enemieslist[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
-		enemieslist[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
-		enemieslist[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
-		enemieslist[enemiesindex1].textheads[3] = const_cast<char*>("Head 4");
-		enemieslist[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
-		enemieslist[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
-		enemieslist[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
-		enemieslist[enemiesindex1].textarms[3] = const_cast<char*>("Arm 4");
-		enemieslist[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		enemieslist[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		enemieslist[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
-		enemieslist[enemiesindex1].textlegs[3] = const_cast<char*>("Leg 4");
-		enemieslist[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		enemieslist[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		enemieslist[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
-		enemieslist[enemiesindex1].textnecks[3] = const_cast<char*>("Neck 4");
-		enemieslist[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		enemieslist[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		enemieslist[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
-		enemieslist[enemiesindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
-		enemieslist[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
-		enemieslist[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
-		enemieslist[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
-		enemieslist[enemiesindex1].textbacks[3] = const_cast<char*>("Back 4");
-		enemieslist[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
-		enemieslist[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
-		enemieslist[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
-		enemieslist[enemiesindex1].textchests[3] = const_cast<char*>("Chest 4");
+		enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
+		enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
+		enemy[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
+		enemy[enemiesindex1].textheads[3] = const_cast<char*>("Head 4");
+		enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
+		enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
+		enemy[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
+		enemy[enemiesindex1].textarms[3] = const_cast<char*>("Arm 4");
+		enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
+		enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
+		enemy[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
+		enemy[enemiesindex1].textlegs[3] = const_cast<char*>("Leg 4");
+		enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
+		enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
+		enemy[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
+		enemy[enemiesindex1].textnecks[3] = const_cast<char*>("Neck 4");
+		enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+		enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+		enemy[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
+		enemy[enemiesindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
+		enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
+		enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
+		enemy[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
+		enemy[enemiesindex1].textbacks[3] = const_cast<char*>("Back 4");
+		enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
+		enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
+		enemy[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
+		enemy[enemiesindex1].textchests[3] = const_cast<char*>("Chest 4");
+		enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
+		enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
+		enemy[enemiesindex1].texttoes[2] = const_cast<char*>("Toe 3");
+		enemy[enemiesindex1].texttoes[3] = const_cast<char*>("Toe 4");
 	}
 
 	while(player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
@@ -420,6 +431,8 @@ int main()
 			}
 		}
 
+		refresh();
+
 		if(ch == '?')
 		{
 			mvprintw(screeny, screenx, "Press a to move left");
@@ -462,7 +475,7 @@ int main()
 				
 					for(int i = 0; i <= indexpos1; i++)
 					{
-						mvprintw(i%24+5, 0, playerlist[playerindex1].textheads[i]);
+						mvprintw(i%24+5, 0, player[playerindex1].textheads[i]);
 					}
 			}
 			if (itempos1 == 1)
@@ -475,7 +488,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textarms[i]);
+					mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
 				}
 			}
 			if (itempos1 == 2)
@@ -488,7 +501,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textlegs[i]);
+					mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
 				}
 			}
 			if (itempos1 == 3)
@@ -501,7 +514,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textnecks[i]);
+					mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
 				}
 			}
 			if (itempos1 == 4)
@@ -514,7 +527,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textshoulders[i]);
+					mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
 				}
 			}
 			if (itempos1 == 5)
@@ -527,7 +540,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textbacks[i]);
+					mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
 				}
 			}
 			if (itempos1 == 6)
@@ -540,7 +553,20 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textchests[i]);
+					mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+				}
+			}
+			if(itempos1 == 7)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Player Toes");
+
+				for(int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
 				}
 			}
 			refresh();
@@ -552,7 +578,7 @@ int main()
 				case 'n':
 					itempos1++;
 
-					if (itempos1 > 6)
+					if (itempos1 > 7)
 					{
 						itempos1 = 0;
 					}
@@ -567,7 +593,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -580,7 +606,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -593,7 +619,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -606,7 +632,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -619,7 +645,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -632,7 +658,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -645,7 +671,20 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+						}
+					}
+					if(itempos1 == 7)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Toes");
+
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
 						}
 					}
 					refresh();
@@ -670,7 +709,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -683,7 +722,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -696,7 +735,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -709,7 +748,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -722,7 +761,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -735,7 +774,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -748,7 +787,19 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+						}
+					}
+					if(itempos1 == 7)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Toes");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
 						}
 					}
 					refresh();
@@ -773,7 +824,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -786,7 +837,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -799,7 +850,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -812,7 +863,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -825,7 +876,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -838,7 +889,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -851,7 +902,19 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, playerlist[playerindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+						}
+					}
+					if(itempos1 == 7)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Toes");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
 						}
 					}
 					refresh();
@@ -875,7 +938,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textheads[i]);
+					mvprintw(i%24+5, 0, enemy[enemiesindex1].textheads[i]);
 				}
 			}
 			if (itempos1 == 1)
@@ -888,7 +951,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textarms[i]);
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textarms[i]);
 				}
 			}
 			if (itempos1 == 2)
@@ -901,7 +964,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textlegs[i]);
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textlegs[i]);
 				}
 			}
 			if (itempos1 == 3)
@@ -914,7 +977,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textnecks[i]);
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textnecks[i]);
 				}
 			}
 			if (itempos1 == 4)
@@ -927,7 +990,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textshoulders[i]);
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textshoulders[i]);
 				}
 			}
 			if (itempos1 == 5)
@@ -940,7 +1003,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textbacks[i]);
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textbacks[i]);
 				}
 			}
 			if (itempos1 == 6)
@@ -953,7 +1016,19 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textchests[i]);
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textchests[i]);
+				}
+			}
+			if(itempos1 == 7)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Enemies Toes");
+				for(int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i%24+5, 0, enemy[enemiesindex1].texttoes[i]);
 				}
 			}
 			refresh();
@@ -965,7 +1040,7 @@ int main()
 				case 'n':
 					itempos1++;
 
-					if (itempos1 > 6)
+					if (itempos1 > 7)
 					{
 						itempos1 = 0;
 					}
@@ -980,7 +1055,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -993,7 +1068,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -1006,7 +1081,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -1019,7 +1094,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -1032,7 +1107,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -1045,7 +1120,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -1058,7 +1133,19 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textchests[i]);
+						}
+					}
+					if(itempos1 == 7)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Toes");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].texttoes[i]);
 						}
 					}
 					refresh();
@@ -1083,7 +1170,7 @@ int main()
 						
 						for(int i = 0; i <= indexpos1; i++)
                                 		{
-                                        		mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textheads[i]);
+                                        		mvprintw(i%24+5, 0, enemy[enemiesindex1].textheads[i]);
                                 		}
 					}
 					if (itempos1 == 1)
@@ -1096,7 +1183,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textarms[i]);
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -1109,7 +1196,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textlegs[i]);
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -1122,7 +1209,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textnecks[i]);
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -1135,7 +1222,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textshoulders[i]);
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -1148,7 +1235,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textbacks[i]);
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -1161,7 +1248,19 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, enemieslist[enemiesindex1].textchests[i]);
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textchests[i]);
+						}
+					}
+					if(itempos1 == 7)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Toes");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].texttoes[i]);
 						}
 					}
 					refresh();
@@ -1186,7 +1285,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -1199,7 +1298,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -1212,7 +1311,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -1225,7 +1324,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -1238,7 +1337,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -1251,7 +1350,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -1264,7 +1363,19 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, enemieslist[enemiesindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textchests[i]);
+						}
+					}
+					if(itempos1 == 7)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Toes");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].texttoes[i]);
 						}
 					}
 					refresh();

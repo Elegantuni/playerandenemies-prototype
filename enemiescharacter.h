@@ -6,6 +6,14 @@
 struct enemiescharacter
 {
 	char character1[2];
+	char *textheads[10];
+	char *textarms[10];
+	char *textlegs[10];
+	char *textnecks[10];
+	char *textshoulders[10];
+	char *textbacks[10];
+	char *textchests[10];
+	char *texttoes[10];
 	int enemiesposx;
 	int enemiesposy;
 	int enemiesindex;
