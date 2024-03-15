@@ -54,7 +54,7 @@ int main()
 	screenindexamount++;
 	screenindex[screenindexamount].name = const_cast<char *>("Chests");
 	screenindexamount++;
-	screenindex[screenindexamount].name = const_cast<char *>("Toe");
+	screenindex[screenindexamount].name = const_cast<char *>("Toes");
 
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Heads");
 	screenindexamount2++;
@@ -70,7 +70,7 @@ int main()
 	screenindexamount2++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Chests");
 	screenindexamount2++;
-	screenindexenemies[screenindexamount2].name = const_cast<char*>("Toe");
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Toes");
 
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
