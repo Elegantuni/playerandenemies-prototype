@@ -59,6 +59,8 @@ int main()
 	screenindex[screenindexamount].name = const_cast<char *>("Wrists");
 	screenindexamount++;
 	screenindex[screenindexamount].name = const_cast<char *>("Waists");
+	screenindexamount++;
+	screenindex[screenindexamount].name = const_cast<char *>("Nails");
 
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Heads");
 	screenindexamount2++;
@@ -79,6 +81,8 @@ int main()
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Wrists");
 	screenindexamount2++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Waists");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Nails");
 
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
@@ -192,6 +196,10 @@ int main()
 		player[playerindex1].textwaists[1] = const_cast<char*>("Waist 2");
 		player[playerindex1].textwaists[2] = const_cast<char*>("Waist 3");
 		player[playerindex1].textwaists[3] = const_cast<char*>("Waist 4");
+		player[playerindex1].textnails[0] = const_cast<char*>("Nail 1");
+		player[playerindex1].textnails[1] = const_cast<char*>("Nail 2");
+		player[playerindex1].textnails[2] = const_cast<char*>("Nail 3");
+		player[playerindex1].textnails[3] = const_cast<char*>("Nail 4");
 	}
 
 	if (rowpos1 == 4)
@@ -246,6 +254,11 @@ int main()
 		player[playerindex1].textwaists[2] = const_cast<char*>("Waist 3");
 		player[playerindex1].textwaists[3] = const_cast<char*>("Waist 4");
 		player[playerindex1].textwaists[4] = const_cast<char*>("Waist 5");
+		player[playerindex1].textnails[0] = const_cast<char*>("Nail 1");
+		player[playerindex1].textnails[1] = const_cast<char*>("Nail 2");
+		player[playerindex1].textnails[2] = const_cast<char*>("Nail 3");
+		player[playerindex1].textnails[3] = const_cast<char*>("Nail 4");
+		player[playerindex1].textnails[4] = const_cast<char*>("Nail 5");
 	}
 
 	if (rowpos1 == 5)
@@ -287,10 +300,10 @@ int main()
 		player[playerindex1].textbacks[4] = const_cast<char*>("Back 5");
 		player[playerindex1].textbacks[5] = const_cast<char*>("Back 6");
 		player[playerindex1].textchests[0] = const_cast<char*>("Chest 1");
-                player[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
-                player[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
-                player[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
-                player[playerindex1].textchests[4] = const_cast<char*>("Chest 5");
+        player[playerindex1].textchests[1] = const_cast<char*>("Chest 2");
+        player[playerindex1].textchests[2] = const_cast<char*>("Chest 3");
+        player[playerindex1].textchests[3] = const_cast<char*>("Chest 4");
+        player[playerindex1].textchests[4] = const_cast<char*>("Chest 5");
 		player[playerindex1].textchests[5] = const_cast<char*>("Chest 6");
 		player[playerindex1].texttoes[0] = const_cast<char*>("Toe 1");
 		player[playerindex1].texttoes[1] = const_cast<char*>("Toe 2");
@@ -310,6 +323,12 @@ int main()
 		player[playerindex1].textwaists[3] = const_cast<char*>("Waist 4");
 		player[playerindex1].textwaists[4] = const_cast<char*>("Waist 5");
 		player[playerindex1].textwaists[5] = const_cast<char*>("Waist 6");
+		player[playerindex1].textnails[0] = const_cast<char*>("Nail 1");
+		player[playerindex1].textnails[1] = const_cast<char*>("Nail 2");
+		player[playerindex1].textnails[2] = const_cast<char*>("Nail 3");
+		player[playerindex1].textnails[3] = const_cast<char*>("Nail 4");
+		player[playerindex1].textnails[4] = const_cast<char*>("Nail 5");
+		player[playerindex1].textnails[5] = const_cast<char*>("Nail 6");
 	}
 
 	if (rowpos2 == 1)
@@ -334,6 +353,8 @@ int main()
 		enemy[enemiesindex1].textwrists[1] = const_cast<char*>("Wrist 2");
 		enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
 		enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
+		enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
+		enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
 	}
 
 	if (rowpos2 == 2)
@@ -368,6 +389,9 @@ int main()
 		enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
 		enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
 		enemy[enemiesindex1].textwaists[2] = const_cast<char*>("Waist 3");
+		enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
+		enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
+		enemy[enemiesindex1].textnails[2] = const_cast<char*>("Nail 3");
 	}
 
 	if (rowpos2 == 3)
@@ -412,6 +436,10 @@ int main()
 		enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
 		enemy[enemiesindex1].textwaists[2] = const_cast<char*>("Waist 3");
 		enemy[enemiesindex1].textwaists[3] = const_cast<char*>("Waist 4");
+		enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
+		enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
+		enemy[enemiesindex1].textnails[2] = const_cast<char*>("Nail 3");
+		enemy[enemiesindex1].textnails[3] = const_cast<char*>("Nail 4");
 	}
 
 	while(player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
@@ -651,6 +679,19 @@ int main()
 					mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
 				}
 			}
+			if(itempos1 == 10)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Player Nails");
+
+				for(int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
+				}
+			}
 			refresh();
 
 			while((ch = getch()) != 'p')
@@ -660,7 +701,7 @@ int main()
 				case 'n':
 					itempos1++;
 
-					if (itempos1 > 9)
+					if (itempos1 > 10)
 					{
 						itempos1 = 0;
 					}
@@ -793,6 +834,19 @@ int main()
 						for(int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
+						}
+					}
+					if(itempos1 == 10)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Nails");
+
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
 						}
 					}
 					refresh();
@@ -934,6 +988,18 @@ int main()
 							mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
 						}
 					}
+					if(itempos1 == 10)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Nails");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
+						}
+					}
 					refresh();
 					break;
 				case 'd':
@@ -1071,6 +1137,18 @@ int main()
 						for(int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
+						}
+					}
+					if(itempos1 == 10)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Nails");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
 						}
 					}
 					refresh();
@@ -1211,6 +1289,18 @@ int main()
 					mvprintw(i%24+5, 0, enemy[enemiesindex1].textwaists[i]);
 				}
 			}
+			if(itempos1 == 10)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Enemies Nails");
+				for(int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i%24+5, 0, enemy[enemiesindex1].textnails[i]);
+				}
+			}
 			refresh();
 
 			while((ch = getch()) != 'p')
@@ -1220,7 +1310,7 @@ int main()
 				case 'n':
 					itempos1++;
 
-					if (itempos1 > 9)
+					if (itempos1 > 10)
 					{
 						itempos1 = 0;
 					}
@@ -1350,6 +1440,18 @@ int main()
 						for(int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i%24+5, 0, enemy[enemiesindex1].textwaists[i]);
+						}
+					}
+					if(itempos1 == 10)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Nails");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textnails[i]);
 						}
 					}
 					refresh();
@@ -1491,6 +1593,18 @@ int main()
 							mvprintw(i%24+5, 0, enemy[enemiesindex1].textwaists[i]);
 						}
 					}
+					if(itempos1 == 10)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Nails");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textnails[i]);
+						}
+					}
 					refresh();
     				break;
       				case 'd':
@@ -1628,6 +1742,18 @@ int main()
 						for(int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i%24+5, 0, enemy[enemiesindex1].textwaists[i]);
+						}
+					}
+					if(itempos1 == 10)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Nails");
+						for(int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i%24+5, 0, enemy[enemiesindex1].textnails[i]);
 						}
 					}
 					refresh();
