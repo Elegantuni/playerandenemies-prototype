@@ -23,6 +23,7 @@ struct enemiescharacter
 	int enemiesindex;
 	char *weapons[10];
 	struct typeofobject enemiesobject;
+	int level;
 };
 
 #endif

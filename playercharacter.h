@@ -23,6 +23,7 @@ struct playercharacter
 	int playerindex;
 	char *weapons[10];
 	struct typeofobject playerobject;
+	int level;
 };
 
 #endif
