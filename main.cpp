@@ -136,15 +136,57 @@ int main()
 	player[playerindex1].character1[0] = characternow2;
 	player[playerindex1].character1[1] = '\0';
 
-	FILE* fp2 = fopen("Data/EnemyCharacterDwarf.txt", "r");
-	
-	if (fp2 == NULL)
+	int counterindex1 = rand() % 4;
+	FILE* fp2;
+			
+	if(counterindex1 == 0)
 	{
-		cout << "Can't open Data/EnemyCharacterDwarf.txt" << endl;
+		fp2 = fopen("Data/EnemyCharacterDwarf.txt", "r");
+	
+		if (fp2 == NULL)
+		{
+			cout << "Can't open Data/EnemyCharacterDwarf.txt" << endl;
 
-		return 0;
+			return 0;
+		}
 	}
 
+	if(counterindex1 == 1)
+	{
+		fp2 = fopen("Data/EnemyCharacterElf.txt", "r");
+
+		if (fp2 == NULL)
+		{
+			cout << "Can't open Data/EnemyCharacterElf.txt" << endl;
+
+			return 0;
+		}
+	}
+
+	if(counterindex1 == 2)
+	{
+		fp2 = fopen("Data/EnemyCharacterHuman.txt", "r");
+
+		if (fp2 == NULL)
+		{
+			cout << "Can't open Data/EnemyCharacterHumun.txt" << endl;
+
+			return 0;
+		}
+	}
+
+	if(counterindex1 == 3)
+	{
+		fp2 = fopen("Data/EnemyCharacterOrc.txt", "r");
+
+		if (fp2 == NULL)
+		{
+			cout << "Can't open Data/EnemyCharacterOrc.txt" << endl;
+
+			return 0;
+		}
+	}
+	
 	int characternow3 = fgetc(fp2);
 	char characternow4 = (char)characternow3;
 
