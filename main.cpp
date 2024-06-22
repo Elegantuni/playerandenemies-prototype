@@ -603,6 +603,8 @@ int main()
 			screeny++;
 			mvprintw(screeny, screenx, "Press v to view body parts for enemy in line of sight");
 			screeny++;
+			mvprintw(screeny, screenx, "Press q to exit the game");
+			screeny++;
 			mvprintw(screeny, screenx, "Press a key to exit this help");
 
 			refresh();
