@@ -141,7 +141,7 @@ int main()
 	player[playerindex1].character1[1] = '\0';
 
 	int counterindex1 = rand() % 4;
-	FILE* fp2;
+	FILE* fp2 = NULL;
 			
 	if(counterindex1 == 0)
 	{
