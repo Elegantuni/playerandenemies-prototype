@@ -27,8 +27,6 @@ int main()
 	srand(time(NULL));
 	int width = 80, height = 24, ch;
 	int screenx = 0, screeny = 0, index1 = 0;
-	int screenindexx1 = 0;
-	int screenindexy1 = 0;
 	int playeramount = 0;
 	int enemiesamount = 0;
 	int playerindex1 = 0;
@@ -526,14 +524,26 @@ int main()
 	noecho();
 	cbreak();
 
-	enemyvisibley = abs(screenindexy1) / height;
-	enemyvisiblex = abs(screenindexx1) / width;
+	enemyvisibley = enemy[enemiesindex1].enemiesposy / height;
+	enemyvisiblex = enemy[enemiesindex1].enemiesposx / width;
 
-	if(enemyvisibley == abs(enemy[enemiesindex1].enemiesposy / height))
+	if(enemyvisibley == player[playerindex1].playerposy / height)
 	{
-		if(enemyvisiblex == abs(enemy[enemiesindex1].enemiesposx / width))
+		if(enemyvisiblex == player[playerindex1].playerposx / width)
 		{
-			mvprintw(abs(enemy[enemiesindex1].enemiesposy % height) , abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+			if(player[playerindex1].playerposx >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+			{
+				if(player[playerindex1].playerposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+				{
+					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+				}
+			}
+			else if(player[playerindex1].playerposx < 0 && enemy[enemiesindex1].enemiesposx >= 0)
+			{
+			}
+			else if(player[playerindex1].playerposy < 0 && enemy[enemiesindex1].enemiesposy >= 0)
+			{
+			}
 		}
 	}
 
@@ -575,8 +585,6 @@ int main()
 					player[playerindex1].playerposx++;
 				}
 			}
-
-			screenindexx1--;
 		}
 
 		if(ch == 'd')
@@ -590,8 +598,6 @@ int main()
 					player[playerindex1].playerposx--;
 				}
 			}
-
-			screenindexy1++;
 		}
 
 		if(ch == 'w')
@@ -605,8 +611,6 @@ int main()
 					player[playerindex1].playerposy++;
 				}
 			}
-
-			screenindexy1--;
 		}
 
 		if(ch == 's')
@@ -620,8 +624,6 @@ int main()
 					player[playerindex1].playerposy--;
 				}
 			}
-		
-			screenindexy1++;
 		}
 
 		refresh();
@@ -1980,14 +1982,26 @@ int main()
 
 		clear();
 
-		enemyvisibley = abs(screenindexy1) / height;
-        	enemyvisiblex = abs(screenindexx1) / width;
+		enemyvisibley = enemy[enemiesindex1].enemiesposy / height;
+        	enemyvisiblex = enemy[enemiesindex1].enemiesposx / width;
 
-        	if(enemyvisibley == abs(enemy[enemiesindex1].enemiesposy) / height)
+        	if(enemyvisibley == player[playerindex1].playerposy / height)
         	{
-                	if(enemyvisiblex == abs(enemy[enemiesindex1].enemiesposx) / width)  
+                	if(enemyvisiblex == player[playerindex1].playerposx / width)
                 	{
-                        	mvprintw(abs(enemy[enemiesindex1].enemiesposy % height) , abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+                        	if(player[playerindex1].playerposx >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+                        	{
+                                	if(player[playerindex1].playerposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+                                	{
+                                        	mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+                                	}
+                        	}
+                        	else if(player[playerindex1].playerposx < 0 && enemy[enemiesindex1].enemiesposx >= 0)
+                        	{
+                        	}
+                        	else if(player[playerindex1].playerposy < 0 && enemy[enemiesindex1].enemiesposy >= 0)
+                        	{
+                        	}
                 	}
         	}
 		
