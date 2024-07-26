@@ -537,8 +537,26 @@ int main()
 		}
 	}
 
-	mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
-	move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
+	if(player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
+        {
+        	mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+        	move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
+        }
+        else if(player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
+        {
+                mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+                move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
+        }
+        else if(player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
+        {
+                mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+                move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
+        }
+        else
+        {
+                mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+                move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
+        }
 
 	refresh();
 	
@@ -1972,9 +1990,27 @@ int main()
                         	mvprintw(abs(enemy[enemiesindex1].enemiesposy % height) , abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
                 	}
         	}
-
-        	mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
-        	move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
+		
+		if(player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
+		{
+        		mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+        		move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
+		}
+		else if(player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
+		{
+			mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
+		}
+		else if(player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
+		{
+			mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
+		}
+		else
+		{
+			mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
+		}
 
 		refresh();
 	}
