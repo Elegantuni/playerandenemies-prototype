@@ -27,6 +27,7 @@ int main()
 	srand(time(NULL));
 	int width = 80, height = 24, ch;
 	int screenx = 0, screeny = 0, index1 = 0;
+	int mapwidth = 1000, mapheight = 1000;
 	int playeramount = 0;
 	int enemiesamount = 0;
 	int playerindex1 = 0;
@@ -585,6 +586,11 @@ int main()
 					player[playerindex1].playerposx++;
 				}
 			}
+
+			if(abs(player[playerindex1].playerposx) > mapwidth)
+			{
+				player[playerindex1].playerposx = -mapwidth;
+			}
 		}
 
 		if(ch == 'd')
@@ -597,6 +603,11 @@ int main()
 				{
 					player[playerindex1].playerposx--;
 				}
+			}
+
+			if(abs(player[playerindex1].playerposx) > mapwidth)
+			{
+				player[playerindex1].playerposx = mapwidth;
 			}
 		}
 
@@ -611,6 +622,11 @@ int main()
 					player[playerindex1].playerposy++;
 				}
 			}
+
+			if(abs(player[playerindex1].playerposy) > mapheight)
+			{
+				player[playerindex1].playerposy = -mapheight;
+			}
 		}
 
 		if(ch == 's')
@@ -623,6 +639,11 @@ int main()
 				{
 					player[playerindex1].playerposy--;
 				}
+			}
+
+			if(abs(player[playerindex1].playerposy) > mapheight)
+			{
+				player[playerindex1].playerposy = mapheight;
 			}
 		}
 
