@@ -1,0 +1,6 @@
+playerandenemies:
+	g++ -o playerandenemies main.cpp `pkg-config --cflags --libs ncursesw` -lm
+
+clean:
+	rm -f playerandenemies
+
