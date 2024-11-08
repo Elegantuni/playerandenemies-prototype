@@ -18,6 +18,7 @@ struct enemiescharacter
 	char *textwaists[10];
 	char *textnails[10];
 	char *texttoenails[10];
+	char *texteyes[10];
 	int enemiesposx;
 	int enemiesposy;
 	int enemiesindex;

@@ -18,6 +18,7 @@ struct playercharacter
 	char *textwaists[10];
 	char *textnails[10];
 	char *texttoenails[10];
+	char *texteyes[10];
 	int playerposx;
 	int playerposy;
 	int playerindex;
