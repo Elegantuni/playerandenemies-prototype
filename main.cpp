@@ -147,7 +147,7 @@ int main()
 	player[playerindex1].character1[0] = characternow2;
 	player[playerindex1].character1[1] = '\0';
 
-	int counterindex1 = rand() % 4;
+	int counterindex1 = rand() % 5;
 	FILE* fp2 = NULL;
 			
 	if(counterindex1 == 0)
@@ -193,6 +193,18 @@ int main()
 		if (fp2 == NULL)
 		{
 			cout << "Can't open Data/EnemyCharacterOrc.txt" << endl;
+
+			return 0;
+		}
+	}
+
+	if(counterindex1 == 4)
+	{
+		fp2 = fopen("Data/EnemyCharacterNecromancer.txt", "r");
+
+		if(fp2 == NULL)
+		{
+			cout << "Can't open Data/EnemyCharacterNecromancer.txt" << endl;
 
 			return 0;
 		}
