@@ -68,6 +68,8 @@ int main()
 	screenindex[screenindexamount].name = const_cast<char *>("Toe Nails");
 	screenindexamount++;
 	screenindex[screenindexamount].name = const_cast<char *>("Eyes");
+	screenindexamount++;
+	screenindex[screenindexamount].name = const_cast<char*>("Lips");
 	
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Heads");
 	screenindexamount2++;
@@ -94,6 +96,8 @@ int main()
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Toe Nails");
 	screenindexamount2++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Eyes");
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Lips");
 	
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
@@ -273,6 +277,10 @@ int main()
 		player[playerindex1].texteyes[1] = const_cast<char*>("Eye 2");
 		player[playerindex1].texteyes[2] = const_cast<char*>("Eye 3");
 		player[playerindex1].texteyes[3] = const_cast<char*>("Eye 4");
+		player[playerindex1].textlips[0] = const_cast<char*>("Lip 1");
+		player[playerindex1].textlips[1] = const_cast<char*>("Lip 2");
+		player[playerindex1].textlips[2] = const_cast<char*>("Lip 3");
+		player[playerindex1].textlips[3] = const_cast<char*>("Lip 4");
 	}
 
 	if (rowpos1 == 4)
@@ -342,6 +350,11 @@ int main()
 		player[playerindex1].texteyes[2] = const_cast<char*>("Eye 3");
 		player[playerindex1].texteyes[3] = const_cast<char*>("Eye 4");
 		player[playerindex1].texteyes[4] = const_cast<char*>("Eye 5");
+		player[playerindex1].textlips[0] = const_cast<char*>("Lip 1");
+		player[playerindex1].textlips[1] = const_cast<char*>("Lip 2");
+		player[playerindex1].textlips[2] = const_cast<char*>("Lip 3");
+		player[playerindex1].textlips[3] = const_cast<char*>("Lip 4");
+		player[playerindex1].textlips[4] = const_cast<char*>("Lip 5");
 	}
 
 	if (rowpos1 == 5)
@@ -424,6 +437,12 @@ int main()
 		player[playerindex1].texteyes[3] = const_cast<char*>("Eye 4");
 		player[playerindex1].texteyes[4] = const_cast<char*>("Eye 5");
 		player[playerindex1].texteyes[5] = const_cast<char*>("Eye 6");
+		player[playerindex1].textlips[0] = const_cast<char*>("Lip 1");
+		player[playerindex1].textlips[1] = const_cast<char*>("Lip 2");
+		player[playerindex1].textlips[2] = const_cast<char*>("Lip 3");
+		player[playerindex1].textlips[3] = const_cast<char*>("Lip 4");
+		player[playerindex1].textlips[4] = const_cast<char*>("Lip 5");
+		player[playerindex1].textlips[5] = const_cast<char*>("Lip 6");
 	}
 
 	if (rowpos2 == 1)
@@ -454,6 +473,8 @@ int main()
       	enemy[enemiesindex1].texttoenails[1] = const_cast<char*>("Toe Nail 2");
 		enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
 		enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
+		enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
+		enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
 	}
 
 	if (rowpos2 == 2)
@@ -497,6 +518,9 @@ int main()
 		enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
 		enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
 		enemy[enemiesindex1].texteyes[2] = const_cast<char*>("Eye 3");
+		enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
+		enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
+		enemy[enemiesindex1].textlips[2] = const_cast<char*>("Lip 3");
 	}
 
 	if (rowpos2 == 3)
@@ -553,6 +577,10 @@ int main()
 		enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
 		enemy[enemiesindex1].texteyes[2] = const_cast<char*>("Eye 3");
 		enemy[enemiesindex1].texteyes[3] = const_cast<char*>("Eye 4");
+		enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
+		enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
+		enemy[enemiesindex1].textlips[2] = const_cast<char*>("Lip 3");
+		enemy[enemiesindex1].textlips[3] = const_cast<char*>("Lip 4");
 	}
 
 	while(player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
@@ -892,6 +920,18 @@ int main()
 					mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
 				}
 			}
+			if (itempos1 == 13)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Player Lips");
+				for (int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i % 24 + 5, 0, player[playerindex1].textlips[i]);
+				}
+			}
 
 			refresh();
 
@@ -902,7 +942,7 @@ int main()
 				case 'n':
 					itempos1++;
 
-					if (itempos1 > 12)
+					if (itempos1 > 13)
 					{
 						itempos1 = 0;
 					}
@@ -1074,6 +1114,18 @@ int main()
 						for(int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
+						}
+					}
+					if (itempos1 == 13)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Lips");
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textlips[i]);
 						}
 					}
 
@@ -1253,6 +1305,18 @@ int main()
 							mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
 						}
 					}
+					if (itempos1 == 13)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Lips");
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textlips[i]);
+						}
+					}
 
 					refresh();
 					break;
@@ -1430,6 +1494,18 @@ int main()
 							mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
 						}
 					}
+					if (itempos1 == 13)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Lips");
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, player[playerindex1].textlips[i]);
+						}
+					}
 
 					refresh();
     					break;
@@ -1605,6 +1681,18 @@ int main()
 					mvprintw(i%24+5, 0, enemy[enemiesindex1].texteyes[i]);
 				}
 			}
+			if (itempos1 == 13)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Enemies Lips");
+				for (int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textlips[i]);
+				}
+			}
 
 			refresh();
 
@@ -1615,7 +1703,7 @@ int main()
 				case 'n':
 					itempos1++;
 
-					if (itempos1 > 12)
+					if (itempos1 > 13)
 					{
 						itempos1 = 0;
 					}
@@ -1781,6 +1869,18 @@ int main()
 						for(int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i%24+5, 0, enemy[enemiesindex1].texteyes[i]);
+						}
+					}
+					if(itempos1 == 13)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Lips");
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textlips[i]);
 						}
 					}
 
@@ -1959,6 +2059,18 @@ int main()
 							mvprintw(i%24+5, 0, enemy[enemiesindex1].texteyes[i]);
 						}
 					}
+					if (itempos1 == 13)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Lips");
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textlips[i]);
+						}
+					}
 
 					refresh();
     				break;
@@ -2133,6 +2245,18 @@ int main()
 						for(int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i%24+5, 0, enemy[enemiesindex1].texteyes[i]);
+						}
+					}
+					if (itempos1 == 13)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Lips");
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textlips[i]);
 						}
 					}
 
