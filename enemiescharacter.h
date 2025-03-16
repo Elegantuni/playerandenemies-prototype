@@ -20,6 +20,8 @@ struct enemiescharacter
 	char *texttoenails[10];
 	char *texteyes[10];
 	char* textlips[10];
+	char* textfeet[10];
+	char* textteeth[10];
 	int enemiesposx;
 	int enemiesposy;
 	int enemiesindex;
