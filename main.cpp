@@ -74,6 +74,8 @@ int main()
 	screenindexenemies[screenindexamount].name = const_cast<char*>("Feet");
 	screenindexamount++;
 	screenindexenemies[screenindexamount].name = const_cast<char*>("Teeth");
+	screenindexamount++;
+	screenindexenemies[screenindexamount].name = const_cast<char*>("Hair");
 	
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Heads");
 	screenindexamount2++;
@@ -106,7 +108,8 @@ int main()
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Feet");
 	screenindexamount2++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Teeth");
-
+	screenindexamount2++;
+	screenindexenemies[screenindexamount2].name = const_cast<char*>("Hair");
 	
 	while(enemiesamount < 50 || enemiesamount > 100000)
 	{
@@ -298,6 +301,10 @@ int main()
 		player[playerindex1].textteeth[1] = const_cast<char*>("Tooth 2");
 		player[playerindex1].textteeth[2] = const_cast<char*>("Tooth 3");
 		player[playerindex1].textteeth[3] = const_cast<char*>("Tooth 4");
+		player[playerindex1].texthair[0] = const_cast<char*>("Hair 1");
+		player[playerindex1].texthair[1] = const_cast<char*>("Hair 2");
+		player[playerindex1].texthair[2] = const_cast<char*>("Hair 3");
+		player[playerindex1].texthair[3] = const_cast<char*>("Hair 4");
 	}
 
 	if (rowpos1 == 4)
@@ -382,6 +389,11 @@ int main()
 		player[playerindex1].textteeth[2] = const_cast<char*>("Tooth 3");
 		player[playerindex1].textteeth[3] = const_cast<char*>("Tooth 4");
 		player[playerindex1].textteeth[4] = const_cast<char*>("Tooth 5");
+		player[playerindex1].texthair[0] = const_cast<char*>("Hair 1");
+		player[playerindex1].texthair[1] = const_cast<char*>("Hair 2");
+		player[playerindex1].texthair[2] = const_cast<char*>("Hair 3");
+		player[playerindex1].texthair[3] = const_cast<char*>("Hair 4");
+		player[playerindex1].texthair[4] = const_cast<char*>("Hair 5");
 	}
 
 	if (rowpos1 == 5)
@@ -482,6 +494,12 @@ int main()
 		player[playerindex1].textteeth[3] = const_cast<char*>("Tooth 4");
 		player[playerindex1].textteeth[4] = const_cast<char*>("Tooth 5");
 		player[playerindex1].textteeth[5] = const_cast<char*>("Tooth 6");
+		player[playerindex1].texthair[0] = const_cast<char*>("Hair 1");
+		player[playerindex1].texthair[1] = const_cast<char*>("Hair 2");
+		player[playerindex1].texthair[2] = const_cast<char*>("Hair 3");
+		player[playerindex1].texthair[3] = const_cast<char*>("Hair 4");
+		player[playerindex1].texthair[4] = const_cast<char*>("Hair 5");
+		player[playerindex1].texthair[5] = const_cast<char*>("Hair 6");
 	}
 
 	if (rowpos2 == 1)
@@ -518,6 +536,8 @@ int main()
 		enemy[enemiesindex1].textfeet[1] = const_cast<char*>("Foot 2");
 		enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
 		enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
+		enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
+		enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
 	}
 
 	if (rowpos2 == 2)
@@ -570,6 +590,9 @@ int main()
 		enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
 		enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
 		enemy[enemiesindex1].textteeth[2] = const_cast<char*>("Tooth 3");
+		enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
+		enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
+		enemy[enemiesindex1].texthair[2] = const_cast<char*>("Hair 3");
 	}
 
 	if (rowpos2 == 3)
@@ -638,6 +661,10 @@ int main()
 		enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
 		enemy[enemiesindex1].textteeth[2] = const_cast<char*>("Tooth 3");
 		enemy[enemiesindex1].textteeth[3] = const_cast<char*>("Tooth 4");
+		enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
+		enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
+		enemy[enemiesindex1].texthair[2] = const_cast<char*>("Hair 3");
+		enemy[enemiesindex1].texthair[3] = const_cast<char*>("Hair 4");
 	}
 
 	while(player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
@@ -1016,6 +1043,19 @@ int main()
 					mvprintw(i%24+5, 0, player[playerindex1].textteeth[i]);
 				}
 			}
+			if(itempos1 == 16)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Player Hair");
+
+				for(int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i%24+5, 0, player[playerindex1].texthair[i]);
+				}
+			}
 
 			refresh();
 
@@ -1026,11 +1066,12 @@ int main()
 				case 'n':
 					itempos1++;
 
-					if (itempos1 > 15)
+					if (itempos1 > 16)
 					{
 						itempos1 = 0;
 					}
 					clear();
+
 					if (itempos1 == 0)
 					{
 						mvprintw(0, 0, "Press e to move up");
@@ -1236,6 +1277,19 @@ int main()
 						for (int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i % 24 + 5, 0, player[playerindex1].textteeth[i]);
+						}
+					}
+					if(itempos1 == 16)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Hair");
+
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, player[playerindex1].texthair[i]);
 						}
 					}
 
@@ -1453,6 +1507,19 @@ int main()
 							mvprintw(i % 24 + 5, 0, player[playerindex1].textteeth[i]);
 						}
 					}
+					if(itempos1 == 16)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Hair");
+
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, player[playerindex1].texthair[i]);
+						}
+					}
 
 					refresh();
 					break;
@@ -1668,6 +1735,19 @@ int main()
 							mvprintw(i % 24 + 5, 0, player[playerindex1].textteeth[i]);
 						}
 					}
+					if(itempos1 == 16)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Player Hair");
+
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, player[playerindex1].texthair[i]);
+						}
+					}
 
 					refresh();
     					break;
@@ -1881,6 +1961,19 @@ int main()
 					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textteeth[i]);
 				}
 			}
+			if(itempos1 == 16)
+			{
+				mvprintw(0, 0, "Press e to move up");
+				mvprintw(1, 0, "Press d to move down");
+				mvprintw(2, 0, "Press p to exit this screen");
+				mvprintw(3, 0, "Press n to view next body part");
+				mvprintw(4, 0, "Enemies Hair");
+
+				for (int i = 0; i <= indexpos1; i++)
+				{
+					mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].texthair[i]);
+				}
+			}
 
 			refresh();
 
@@ -1892,7 +1985,7 @@ int main()
 					
 					itempos1++;
 
-					if (itempos1 > 15)
+					if (itempos1 > 16)
 					{
 						itempos1 = 0;
 					}
@@ -2096,6 +2189,19 @@ int main()
 						for (int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textteeth[i]);
+						}
+					}
+					if(itempos1 == 16)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Hair");
+
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].texthair[i]);
 						}
 					}
 
@@ -2312,6 +2418,19 @@ int main()
 							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textteeth[i]);
 						}
 					}
+					if(itempos1 == 16)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Hair");
+
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].texthair[i]);
+						}
+					}
 
 					refresh();
     				break;
@@ -2524,6 +2643,19 @@ int main()
 						for (int i = 0; i <= indexpos1; i++)
 						{
 							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].textteeth[i]);
+						}
+					}
+					if(itempos1 == 16)
+					{
+						mvprintw(0, 0, "Press e to move up");
+						mvprintw(1, 0, "Press d to move down");
+						mvprintw(2, 0, "Press p to exit this screen");
+						mvprintw(3, 0, "Press n to view next body part");
+						mvprintw(4, 0, "Enemies Hair");
+
+						for (int i = 0; i <= indexpos1; i++)
+						{
+							mvprintw(i % 24 + 5, 0, enemy[enemiesindex1].texthair[i]);
 						}
 					}
 
