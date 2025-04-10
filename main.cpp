@@ -42,6 +42,7 @@ int main()
 	int rowpos2 = 0;
 	int enemyvisiblex = 0;
 	int enemyvisibley = 0;
+	int enemiesindex1_max = 0;
 
 	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
@@ -137,8 +138,8 @@ int main()
 	player[playerindex1].playerposx = rand() % width;
 	player[playerindex1].playerposy = rand() % height;
 
-	enemy[enemiesindex1].enemiesposx = rand() % width;
-	enemy[enemiesindex1].enemiesposy = rand() % height;
+	enemy[enemiesindex1].enemiesposx = rand() % mapwidth;
+	enemy[enemiesindex1].enemiesposy = rand() % mapheight;
 
 	player[playerindex1].playerobject.player = 1;
 
@@ -163,74 +164,80 @@ int main()
 	player[playerindex1].character1[0] = characternow2;
 	player[playerindex1].character1[1] = '\0';
 
-	int counterindex1 = rand() % 5;
 	FILE* fp2 = NULL;
-			
-	if(counterindex1 == 0)
-	{
-		fp2 = fopen("Data/EnemyCharacterDwarf.txt", "r");
 	
-		if (fp2 == NULL)
-		{
-			cout << "Can't open Data/EnemyCharacterDwarf.txt" << endl;
-
-			return 0;
-		}
-	}
-
-	if(counterindex1 == 1)
+	for (enemiesindex1 = 0; enemiesindex1 <= enemiesamountreal; enemiesindex1++)
 	{
-		fp2 = fopen("Data/EnemyCharacterElf.txt", "r");
+		int counterindex1 = rand() % 5;
 
-		if (fp2 == NULL)
+		if (counterindex1 == 0)
 		{
-			cout << "Can't open Data/EnemyCharacterElf.txt" << endl;
+			fp2 = fopen("Data/EnemyCharacterDwarf.txt", "r");
 
-			return 0;
+			if (fp2 == NULL)
+			{
+				cout << "Can't open Data/EnemyCharacterDwarf.txt" << endl;
+
+				return 0;
+			}
 		}
-	}
 
-	if(counterindex1 == 2)
-	{
-		fp2 = fopen("Data/EnemyCharacterHuman.txt", "r");
-
-		if (fp2 == NULL)
+		if (counterindex1 == 1)
 		{
-			cout << "Can't open Data/EnemyCharacterHumun.txt" << endl;
+			fp2 = fopen("Data/EnemyCharacterElf.txt", "r");
 
-			return 0;
+			if (fp2 == NULL)
+			{
+				cout << "Can't open Data/EnemyCharacterElf.txt" << endl;
+
+				return 0;
+			}
 		}
-	}
 
-	if(counterindex1 == 3)
-	{
-		fp2 = fopen("Data/EnemyCharacterOrc.txt", "r");
-
-		if (fp2 == NULL)
+		if (counterindex1 == 2)
 		{
-			cout << "Can't open Data/EnemyCharacterOrc.txt" << endl;
+			fp2 = fopen("Data/EnemyCharacterHuman.txt", "r");
 
-			return 0;
+			if (fp2 == NULL)
+			{
+				cout << "Can't open Data/EnemyCharacterHumun.txt" << endl;
+
+				return 0;
+			}
 		}
-	}
 
-	if(counterindex1 == 4)
-	{
-		fp2 = fopen("Data/EnemyCharacterNecromancer.txt", "r");
-
-		if(fp2 == NULL)
+		if (counterindex1 == 3)
 		{
-			cout << "Can't open Data/EnemyCharacterNecromancer.txt" << endl;
+			fp2 = fopen("Data/EnemyCharacterOrc.txt", "r");
 
-			return 0;
+			if (fp2 == NULL)
+			{
+				cout << "Can't open Data/EnemyCharacterOrc.txt" << endl;
+
+				return 0;
+			}
 		}
-	}
-	
-	int characternow3 = fgetc(fp2);
-	char characternow4 = (char)characternow3;
 
-	enemy[enemiesindex1].character1[0] = characternow4;
-	enemy[enemiesindex1].character1[1] = '\0';
+		if (counterindex1 == 4)
+		{
+			fp2 = fopen("Data/EnemyCharacterNecromancer.txt", "r");
+
+			if (fp2 == NULL)
+			{
+				cout << "Can't open Data/EnemyCharacterNecromancer.txt" << endl;
+
+				return 0;
+			}
+		}
+
+		int characternow3 = fgetc(fp2);
+		char characternow4 = (char)characternow3;
+
+		enemy[enemiesindex1].character1[0] = characternow4;
+		enemy[enemiesindex1].character1[1] = '\0';
+
+		enemiesindex1_max = enemiesamountreal;
+	}
 
 	rowpos1 = rand() % 3 + 3;
 	rowpos2 = rand() % 3 + 1;
@@ -502,200 +509,221 @@ int main()
 		player[playerindex1].texthair[5] = const_cast<char*>("Hair 6");
 	}
 
-	if (rowpos2 == 1)
+	for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
 	{
-		enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
-		enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
-		enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
-		enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
-		enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
-		enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
-		enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
-		enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
-		enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
-		enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
-		enemy[enemiesindex1].textwrists[0] = const_cast<char*>("Wrist 1");
-		enemy[enemiesindex1].textwrists[1] = const_cast<char*>("Wrist 2");
-		enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
-		enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
-		enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
-		enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
-		enemy[enemiesindex1].texttoenails[0] = const_cast<char*>("Toe Nail 1");
-      		enemy[enemiesindex1].texttoenails[1] = const_cast<char*>("Toe Nail 2");
-		enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
-		enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
-		enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
-		enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
-		enemy[enemiesindex1].textfeet[0] = const_cast<char*>("Foot 1");
-		enemy[enemiesindex1].textfeet[1] = const_cast<char*>("Foot 2");
-		enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
-		enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
-		enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
-		enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
+		if (rowpos2 == 1)
+		{
+			enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
+			enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
+			enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
+			enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
+			enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
+			enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
+			enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
+			enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
+			enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+			enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+			enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
+			enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
+			enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
+			enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
+			enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
+			enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
+			enemy[enemiesindex1].textwrists[0] = const_cast<char*>("Wrist 1");
+			enemy[enemiesindex1].textwrists[1] = const_cast<char*>("Wrist 2");
+			enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
+			enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
+			enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
+			enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
+			enemy[enemiesindex1].texttoenails[0] = const_cast<char*>("Toe Nail 1");
+			enemy[enemiesindex1].texttoenails[1] = const_cast<char*>("Toe Nail 2");
+			enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
+			enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
+			enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
+			enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
+			enemy[enemiesindex1].textfeet[0] = const_cast<char*>("Foot 1");
+			enemy[enemiesindex1].textfeet[1] = const_cast<char*>("Foot 2");
+			enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
+			enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
+			enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
+			enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
+		}
+
+		if (rowpos2 == 2)
+		{
+			enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
+			enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
+			enemy[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
+			enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
+			enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
+			enemy[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
+			enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
+			enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
+			enemy[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
+			enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
+			enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
+			enemy[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
+			enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+			enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+			enemy[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
+			enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
+			enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
+			enemy[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
+			enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
+			enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
+			enemy[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
+			enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
+			enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
+			enemy[enemiesindex1].texttoes[2] = const_cast<char*>("Toe 3");
+			enemy[enemiesindex1].textwrists[0] = const_cast<char*>("Wrist 1");
+			enemy[enemiesindex1].textwrists[1] = const_cast<char*>("Wrist 2");
+			enemy[enemiesindex1].textwrists[2] = const_cast<char*>("Wrist 3");
+			enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
+			enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
+			enemy[enemiesindex1].textwaists[2] = const_cast<char*>("Waist 3");
+			enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
+			enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
+			enemy[enemiesindex1].textnails[2] = const_cast<char*>("Nail 3");
+			enemy[enemiesindex1].texttoenails[0] = const_cast<char*>("Toe Nail 1");
+			enemy[enemiesindex1].texttoenails[1] = const_cast<char*>("Toe Nail 2");
+			enemy[enemiesindex1].texttoenails[2] = const_cast<char*>("Toe Nail 3");
+			enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
+			enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
+			enemy[enemiesindex1].texteyes[2] = const_cast<char*>("Eye 3");
+			enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
+			enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
+			enemy[enemiesindex1].textlips[2] = const_cast<char*>("Lip 3");
+			enemy[enemiesindex1].textfeet[0] = const_cast<char*>("Foot 1");
+			enemy[enemiesindex1].textfeet[1] = const_cast<char*>("Foot 2");
+			enemy[enemiesindex1].textfeet[2] = const_cast<char*>("Foot 3");
+			enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
+			enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
+			enemy[enemiesindex1].textteeth[2] = const_cast<char*>("Tooth 3");
+			enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
+			enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
+			enemy[enemiesindex1].texthair[2] = const_cast<char*>("Hair 3");
+		}
+
+		if (rowpos2 == 3)
+		{
+			enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
+			enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
+			enemy[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
+			enemy[enemiesindex1].textheads[3] = const_cast<char*>("Head 4");
+			enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
+			enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
+			enemy[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
+			enemy[enemiesindex1].textarms[3] = const_cast<char*>("Arm 4");
+			enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
+			enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
+			enemy[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
+			enemy[enemiesindex1].textlegs[3] = const_cast<char*>("Leg 4");
+			enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
+			enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
+			enemy[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
+			enemy[enemiesindex1].textnecks[3] = const_cast<char*>("Neck 4");
+			enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
+			enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
+			enemy[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
+			enemy[enemiesindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
+			enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
+			enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
+			enemy[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
+			enemy[enemiesindex1].textbacks[3] = const_cast<char*>("Back 4");
+			enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
+			enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
+			enemy[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
+			enemy[enemiesindex1].textchests[3] = const_cast<char*>("Chest 4");
+			enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
+			enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
+			enemy[enemiesindex1].texttoes[2] = const_cast<char*>("Toe 3");
+			enemy[enemiesindex1].texttoes[3] = const_cast<char*>("Toe 4");
+			enemy[enemiesindex1].textwrists[0] = const_cast<char*>("Wrist 1");
+			enemy[enemiesindex1].textwrists[1] = const_cast<char*>("Wrist 2");
+			enemy[enemiesindex1].textwrists[2] = const_cast<char*>("Wrist 3");
+			enemy[enemiesindex1].textwrists[3] = const_cast<char*>("Wrist 4");
+			enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
+			enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
+			enemy[enemiesindex1].textwaists[2] = const_cast<char*>("Waist 3");
+			enemy[enemiesindex1].textwaists[3] = const_cast<char*>("Waist 4");
+			enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
+			enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
+			enemy[enemiesindex1].textnails[2] = const_cast<char*>("Nail 3");
+			enemy[enemiesindex1].textnails[3] = const_cast<char*>("Nail 4");
+			enemy[enemiesindex1].texttoenails[0] = const_cast<char*>("Toe Nail 1");
+			enemy[enemiesindex1].texttoenails[1] = const_cast<char*>("Toe Nail 2");
+			enemy[enemiesindex1].texttoenails[2] = const_cast<char*>("Toe Nail 3");
+			enemy[enemiesindex1].texttoenails[3] = const_cast<char*>("Toe Nail 4");
+			enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
+			enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
+			enemy[enemiesindex1].texteyes[2] = const_cast<char*>("Eye 3");
+			enemy[enemiesindex1].texteyes[3] = const_cast<char*>("Eye 4");
+			enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
+			enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
+			enemy[enemiesindex1].textlips[2] = const_cast<char*>("Lip 3");
+			enemy[enemiesindex1].textlips[3] = const_cast<char*>("Lip 4");
+			enemy[enemiesindex1].textfeet[0] = const_cast<char*>("Foot 1");
+			enemy[enemiesindex1].textfeet[1] = const_cast<char*>("Foot 2");
+			enemy[enemiesindex1].textfeet[2] = const_cast<char*>("Foot 3");
+			enemy[enemiesindex1].textfeet[3] = const_cast<char*>("Foot 4");
+			enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
+			enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
+			enemy[enemiesindex1].textteeth[2] = const_cast<char*>("Tooth 3");
+			enemy[enemiesindex1].textteeth[3] = const_cast<char*>("Tooth 4");
+			enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
+			enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
+			enemy[enemiesindex1].texthair[2] = const_cast<char*>("Hair 3");
+			enemy[enemiesindex1].texthair[3] = const_cast<char*>("Hair 4");
+		}
 	}
 
-	if (rowpos2 == 2)
+	for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
 	{
-		enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
-		enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
-		enemy[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
-		enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
-		enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
-		enemy[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
-		enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		enemy[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
-		enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		enemy[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
-		enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		enemy[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
-		enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
-		enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
-		enemy[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
-		enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
-		enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
-		enemy[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
-		enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
-		enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
-		enemy[enemiesindex1].texttoes[2] = const_cast<char*>("Toe 3");
-		enemy[enemiesindex1].textwrists[0] = const_cast<char*>("Wrist 1");
-		enemy[enemiesindex1].textwrists[1] = const_cast<char*>("Wrist 2");
-		enemy[enemiesindex1].textwrists[2] = const_cast<char*>("Wrist 3");
-		enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
-		enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
-		enemy[enemiesindex1].textwaists[2] = const_cast<char*>("Waist 3");
-		enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
-		enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
-		enemy[enemiesindex1].textnails[2] = const_cast<char*>("Nail 3");
-		enemy[enemiesindex1].texttoenails[0] = const_cast<char*>("Toe Nail 1");
-      		enemy[enemiesindex1].texttoenails[1] = const_cast<char*>("Toe Nail 2");
-      		enemy[enemiesindex1].texttoenails[2] = const_cast<char*>("Toe Nail 3");
-		enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
-		enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
-		enemy[enemiesindex1].texteyes[2] = const_cast<char*>("Eye 3");
-		enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
-		enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
-		enemy[enemiesindex1].textlips[2] = const_cast<char*>("Lip 3");
-		enemy[enemiesindex1].textfeet[0] = const_cast<char*>("Foot 1");
-		enemy[enemiesindex1].textfeet[1] = const_cast<char*>("Foot 2");
-		enemy[enemiesindex1].textfeet[2] = const_cast<char*>("Foot 3");
-		enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
-		enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
-		enemy[enemiesindex1].textteeth[2] = const_cast<char*>("Tooth 3");
-		enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
-		enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
-		enemy[enemiesindex1].texthair[2] = const_cast<char*>("Hair 3");
+		enemy[enemiesindex1].enemiesposx = rand() % mapwidth;
+		enemy[enemiesindex1].enemiesposy = rand() % mapheight;
 	}
 
-	if (rowpos2 == 3)
+	while (player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
 	{
-		enemy[enemiesindex1].textheads[0] = const_cast<char*>("Head 1");
-		enemy[enemiesindex1].textheads[1] = const_cast<char*>("Head 2");
-		enemy[enemiesindex1].textheads[2] = const_cast<char*>("Head 3");
-		enemy[enemiesindex1].textheads[3] = const_cast<char*>("Head 4");
-		enemy[enemiesindex1].textarms[0] = const_cast<char*>("Arm 1");
-		enemy[enemiesindex1].textarms[1] = const_cast<char*>("Arm 2");
-		enemy[enemiesindex1].textarms[2] = const_cast<char*>("Arm 3");
-		enemy[enemiesindex1].textarms[3] = const_cast<char*>("Arm 4");
-		enemy[enemiesindex1].textlegs[0] = const_cast<char*>("Leg 1");
-		enemy[enemiesindex1].textlegs[1] = const_cast<char*>("Leg 2");
-		enemy[enemiesindex1].textlegs[2] = const_cast<char*>("Leg 3");
-		enemy[enemiesindex1].textlegs[3] = const_cast<char*>("Leg 4");
-		enemy[enemiesindex1].textnecks[0] = const_cast<char*>("Neck 1");
-		enemy[enemiesindex1].textnecks[1] = const_cast<char*>("Neck 2");
-		enemy[enemiesindex1].textnecks[2] = const_cast<char*>("Neck 3");
-		enemy[enemiesindex1].textnecks[3] = const_cast<char*>("Neck 4");
-		enemy[enemiesindex1].textshoulders[0] = const_cast<char*>("Shoulder 1");
-		enemy[enemiesindex1].textshoulders[1] = const_cast<char*>("Shoulder 2");
-		enemy[enemiesindex1].textshoulders[2] = const_cast<char*>("Shoulder 3");
-		enemy[enemiesindex1].textshoulders[3] = const_cast<char*>("Shoulder 4");
-		enemy[enemiesindex1].textbacks[0] = const_cast<char*>("Back 1");
-		enemy[enemiesindex1].textbacks[1] = const_cast<char*>("Back 2");
-		enemy[enemiesindex1].textbacks[2] = const_cast<char*>("Back 3");
-		enemy[enemiesindex1].textbacks[3] = const_cast<char*>("Back 4");
-		enemy[enemiesindex1].textchests[0] = const_cast<char*>("Chest 1");
-		enemy[enemiesindex1].textchests[1] = const_cast<char*>("Chest 2");
-		enemy[enemiesindex1].textchests[2] = const_cast<char*>("Chest 3");
-		enemy[enemiesindex1].textchests[3] = const_cast<char*>("Chest 4");
-		enemy[enemiesindex1].texttoes[0] = const_cast<char*>("Toe 1");
-		enemy[enemiesindex1].texttoes[1] = const_cast<char*>("Toe 2");
-		enemy[enemiesindex1].texttoes[2] = const_cast<char*>("Toe 3");
-		enemy[enemiesindex1].texttoes[3] = const_cast<char*>("Toe 4");
-		enemy[enemiesindex1].textwrists[0] = const_cast<char*>("Wrist 1");
-		enemy[enemiesindex1].textwrists[1] = const_cast<char*>("Wrist 2");
-		enemy[enemiesindex1].textwrists[2] = const_cast<char*>("Wrist 3");
-		enemy[enemiesindex1].textwrists[3] = const_cast<char*>("Wrist 4");
-		enemy[enemiesindex1].textwaists[0] = const_cast<char*>("Waist 1");
-		enemy[enemiesindex1].textwaists[1] = const_cast<char*>("Waist 2");
-		enemy[enemiesindex1].textwaists[2] = const_cast<char*>("Waist 3");
-		enemy[enemiesindex1].textwaists[3] = const_cast<char*>("Waist 4");
-		enemy[enemiesindex1].textnails[0] = const_cast<char*>("Nail 1");
-		enemy[enemiesindex1].textnails[1] = const_cast<char*>("Nail 2");
-		enemy[enemiesindex1].textnails[2] = const_cast<char*>("Nail 3");
-		enemy[enemiesindex1].textnails[3] = const_cast<char*>("Nail 4");
-		enemy[enemiesindex1].texttoenails[0] = const_cast<char*>("Toe Nail 1");
-      		enemy[enemiesindex1].texttoenails[1] = const_cast<char*>("Toe Nail 2");
-      		enemy[enemiesindex1].texttoenails[2] = const_cast<char*>("Toe Nail 3");
-      		enemy[enemiesindex1].texttoenails[3] = const_cast<char*>("Toe Nail 4");
-		enemy[enemiesindex1].texteyes[0] = const_cast<char*>("Eye 1");
-		enemy[enemiesindex1].texteyes[1] = const_cast<char*>("Eye 2");
-		enemy[enemiesindex1].texteyes[2] = const_cast<char*>("Eye 3");
-		enemy[enemiesindex1].texteyes[3] = const_cast<char*>("Eye 4");
-		enemy[enemiesindex1].textlips[0] = const_cast<char*>("Lip 1");
-		enemy[enemiesindex1].textlips[1] = const_cast<char*>("Lip 2");
-		enemy[enemiesindex1].textlips[2] = const_cast<char*>("Lip 3");
-		enemy[enemiesindex1].textlips[3] = const_cast<char*>("Lip 4");
-		enemy[enemiesindex1].textfeet[0] = const_cast<char*>("Foot 1");
-		enemy[enemiesindex1].textfeet[1] = const_cast<char*>("Foot 2");
-		enemy[enemiesindex1].textfeet[2] = const_cast<char*>("Foot 3");
-		enemy[enemiesindex1].textfeet[3] = const_cast<char*>("Foot 4");
-		enemy[enemiesindex1].textteeth[0] = const_cast<char*>("Tooth 1");
-		enemy[enemiesindex1].textteeth[1] = const_cast<char*>("Tooth 2");
-		enemy[enemiesindex1].textteeth[2] = const_cast<char*>("Tooth 3");
-		enemy[enemiesindex1].textteeth[3] = const_cast<char*>("Tooth 4");
-		enemy[enemiesindex1].texthair[0] = const_cast<char*>("Hair 1");
-		enemy[enemiesindex1].texthair[1] = const_cast<char*>("Hair 2");
-		enemy[enemiesindex1].texthair[2] = const_cast<char*>("Hair 3");
-		enemy[enemiesindex1].texthair[3] = const_cast<char*>("Hair 4");
+		enemy[enemiesindex1].enemiesposx = rand() % mapwidth;
+		enemy[enemiesindex1].enemiesposy = rand() % mapheight;
 	}
 
-	while(player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
+	for (int i = 0; i <= enemiesindex1_max; i++)
 	{
-		enemy[enemiesindex1].enemiesposx = rand() % width;
-		enemy[enemiesindex1].enemiesposy = rand() % height;
+		if (enemy[i].enemiesposx == enemy[enemiesindex1].enemiesposx && enemy[i].enemiesposy == enemy[enemiesindex1].enemiesposy)
+		{
+			enemy[enemiesindex1].enemiesposx = rand() % mapwidth;
+			enemy[enemiesindex1].enemiesposy = rand() % mapheight;
+		}
 	}
 	
 	initscr();
 	noecho();
 	cbreak();
 
-	enemyvisibley = enemy[enemiesindex1].enemiesposy / height;
-	enemyvisiblex = enemy[enemiesindex1].enemiesposx / width;
-
-	if(enemyvisibley == player[playerindex1].playerposy / height)
+	for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
 	{
-		if(enemyvisiblex == player[playerindex1].playerposx / width)
+		enemyvisibley = enemy[enemiesindex1].enemiesposy / height;
+		enemyvisiblex = enemy[enemiesindex1].enemiesposx / width;
+
+		if (enemyvisibley == player[playerindex1].playerposy / height)
 		{
-			if(player[playerindex1].playerposx >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+			if (enemyvisiblex == player[playerindex1].playerposx / width)
 			{
-				if(player[playerindex1].playerposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+				if (player[playerindex1].playerposx >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
 				{
-					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					if (player[playerindex1].playerposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+					{
+						mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					}
 				}
-			}
-			else if(player[playerindex1].playerposx < 0 && enemy[enemiesindex1].enemiesposx >= 0)
-			{
-			}
-			else if(player[playerindex1].playerposy < 0 && enemy[enemiesindex1].enemiesposy >= 0)
-			{
+				else if (player[playerindex1].playerposx < 0 && enemy[enemiesindex1].enemiesposx >= 0)
+				{
+				}
+				else if (player[playerindex1].playerposy < 0 && enemy[enemiesindex1].enemiesposy >= 0)
+				{
+				}
 			}
 		}
 	}
@@ -2667,29 +2695,32 @@ int main()
 
 		clear();
 
-		enemyvisibley = enemy[enemiesindex1].enemiesposy / height;
-        	enemyvisiblex = enemy[enemiesindex1].enemiesposx / width;
+		for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
+		{
+			enemyvisibley = enemy[enemiesindex1].enemiesposy / height;
+			enemyvisiblex = enemy[enemiesindex1].enemiesposx / width;
 
-        	if(enemyvisibley == player[playerindex1].playerposy / height)
-        	{
-                	if(enemyvisiblex == player[playerindex1].playerposx / width)
-                	{
-                        	if(player[playerindex1].playerposx >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
-                        	{
-                                	if(player[playerindex1].playerposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
-                                	{
-                                        	mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
-                                	}
-                        	}
-                        	else if(player[playerindex1].playerposx < 0 && enemy[enemiesindex1].enemiesposx >= 0)
-                        	{
-                        	}
-                        	else if(player[playerindex1].playerposy < 0 && enemy[enemiesindex1].enemiesposy >= 0)
-                        	{
-                        	}
-                	}
-        	}
-		
+			if (enemyvisibley == player[playerindex1].playerposy / height)
+			{
+				if (enemyvisiblex == player[playerindex1].playerposx / width)
+				{
+					if (player[playerindex1].playerposx >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+					{
+						if (player[playerindex1].playerposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+						{
+							mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+						}
+					}
+					else if (player[playerindex1].playerposx < 0 && enemy[enemiesindex1].enemiesposx >= 0)
+					{
+					}
+					else if (player[playerindex1].playerposy < 0 && enemy[enemiesindex1].enemiesposy >= 0)
+					{
+					}
+				}
+			}
+		}
+
 		if(player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 		{
         		mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
@@ -2718,4 +2749,5 @@ int main()
 
 	return 0;
 }
+
 
