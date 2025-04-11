@@ -746,6 +746,14 @@ int main()
 		}
 	}
 
+	for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
+	{
+		if (player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
+		{
+			player[playerindex1].playerposx--;
+		}
+	}
+
 	if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 	{
 		mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
