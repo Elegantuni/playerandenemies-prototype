@@ -677,11 +677,10 @@ int main()
 		}
 	}
 
+	
+
 	for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
 	{
-		enemy[enemiesindex1].enemiesposx = rand() % (2 * mapwidth);
-		enemy[enemiesindex1].enemiesposy = rand() % (2 * mapheight);
-
 		if (enemy[enemiesindex1].enemiesposx >= mapwidth)
 		{
 			enemy[enemiesindex1].enemiesposx = -enemy[enemiesindex1].enemiesposx + mapwidth;
