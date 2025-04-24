@@ -135,8 +135,8 @@ int main()
 	struct enemiescharacter* enemy = (struct enemiescharacter *) malloc(sizeof(struct enemiescharacter) * enemiesamountreal);
 #endif
 
-	player[playerindex1].playerposx = rand() % width;
-	player[playerindex1].playerposy = rand() % height;
+	player[playerindex1].playerposx = -500;
+	player[playerindex1].playerposy = -500;
 
 	enemy[enemiesindex1].enemiesposx = rand() % (2*mapwidth);
 	enemy[enemiesindex1].enemiesposy = rand() % (2*mapheight);
@@ -728,6 +728,7 @@ int main()
 	}
 	
 	initscr();
+	resize_term(mapheight, mapwidth);
 	noecho();
 	cbreak();
 
@@ -744,15 +745,6 @@ int main()
 			}
 		}
 	}
-
-	/*for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
-	{
-		if (player[playerindex1].playerposx == enemy[enemiesindex1].enemiesposx && player[playerindex1].playerposy == enemy[enemiesindex1].enemiesposy)
-		{
-			player[playerindex1].playerposx--;
-		}
-	}
-	*/
 
 	if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 	{
@@ -793,7 +785,7 @@ int main()
 				}
 			}
 
-			if(abs(player[playerindex1].playerposx) > mapwidth)
+			if(player[playerindex1].playerposx < mapwidth)
 			{
 				player[playerindex1].playerposx = -mapwidth;
 			}
@@ -811,7 +803,7 @@ int main()
 				}
 			}
 
-			if(abs(player[playerindex1].playerposx) > mapwidth)
+			if(player[playerindex1].playerposx > mapwidth)
 			{
 				player[playerindex1].playerposx = mapwidth;
 			}
@@ -829,7 +821,7 @@ int main()
 				}
 			}
 
-			if(abs(player[playerindex1].playerposy) > mapheight)
+			if(player[playerindex1].playerposy < mapheight)
 			{
 				player[playerindex1].playerposy = -mapheight;
 			}
@@ -847,7 +839,7 @@ int main()
 				}
 			}
 
-			if(abs(player[playerindex1].playerposy) > mapheight)
+			if(player[playerindex1].playerposy > mapheight)
 			{
 				player[playerindex1].playerposy = mapheight;
 			}
@@ -2763,5 +2755,3 @@ int main()
 
 	return 0;
 }
-
-
