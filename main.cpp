@@ -856,7 +856,7 @@ int main()
 			}
 			
 			mvprintw(0 % height, 0 % width, "Enemy %d is at %d, %d", statcharacter + 1, enemy[statcharacter].enemiesposx, enemy[statcharacter].enemiesposy);
-			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1, player[playerindex1].playerposx, player[playerindex1].playerposy);
+			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1 + 1, player[playerindex1].playerposx, player[playerindex1].playerposy);
 		}
 
 		refresh();
@@ -2767,7 +2767,7 @@ int main()
 		if (statcharacter != -1)
 		{
 			mvprintw(0 % height, 0 % width, "Enemy %d is at %d, %d", statcharacter + 1, enemy[statcharacter].enemiesposx, enemy[statcharacter].enemiesposy);
-			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1, player[playerindex1].playerposx, player[playerindex1].playerposy);
+			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1 + 1, player[playerindex1].playerposx, player[playerindex1].playerposy);
 		}
 
 		refresh();
