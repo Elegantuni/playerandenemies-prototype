@@ -43,6 +43,7 @@ int main()
 	int enemyvisiblex = 0;
 	int enemyvisibley = 0;
 	int enemiesindex1_max = 0;
+	int statcharacter = -1;
 
 	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
@@ -845,6 +846,19 @@ int main()
 			}
 		}
 
+		if (ch == 'c')
+		{
+			statcharacter++;
+
+			if(statcharacter > enemiesamount)
+			{
+				statcharacter = 0;
+			}
+			
+			mvprintw(0 % height, 0 % width, "Enemy %d is at %d, %d", statcharacter + 1, enemy[statcharacter].enemiesposx, enemy[statcharacter].enemiesposy);
+			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1, player[playerindex1].playerposx, player[playerindex1].playerposy);
+		}
+
 		refresh();
 
 		if(ch == '?')
@@ -866,6 +880,8 @@ int main()
 			mvprintw(screeny, screenx, "Press q to exit the game");
 			screeny++;
 			mvprintw(screeny, screenx, "Press a key to exit this help");
+			screeny++;
+			mvprintw(screeny, screenx, "Press c to view enemy positions");
 
 			refresh();
 			
@@ -2746,6 +2762,12 @@ int main()
 		{
 			mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
 			move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
+		}
+
+		if (statcharacter != -1)
+		{
+			mvprintw(0 % height, 0 % width, "Enemy %d is at %d, %d", statcharacter + 1, enemy[statcharacter].enemiesposx, enemy[statcharacter].enemiesposy);
+			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1, player[playerindex1].playerposx, player[playerindex1].playerposy);
 		}
 
 		refresh();
