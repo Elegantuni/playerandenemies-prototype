@@ -786,7 +786,7 @@ int main()
 				}
 			}
 
-			if(player[playerindex1].playerposx < mapwidth)
+			if(player[playerindex1].playerposx < 0 && player[playerindex1].playerposx < -mapwidth)
 			{
 				player[playerindex1].playerposx = -mapwidth;
 			}
@@ -822,7 +822,7 @@ int main()
 				}
 			}
 
-			if(player[playerindex1].playerposy < mapheight)
+			if(player[playerindex1].playerposy < 0 && player[playerindex1].playerposy < -mapheight)
 			{
 				player[playerindex1].playerposy = -mapheight;
 			}
