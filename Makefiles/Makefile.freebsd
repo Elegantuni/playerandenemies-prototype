@@ -1,5 +1,5 @@
 playerandenemies:
-	clang++ -o playerandenemies main.cpp `pkg-config --cflags --libs ncurses`
+	clang++ -o playerandenemies main.cpp `pkg-config --cflags --libs ncursesw`
 
 clean:
 	rm -f playerandenemies
