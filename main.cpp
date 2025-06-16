@@ -738,9 +738,9 @@ int main()
 		enemyvisibley = enemy[enemiesindex1].enemiesposy / height;
 		enemyvisiblex = enemy[enemiesindex1].enemiesposx / width;
 
-		if (enemyvisibley == player[playerindex1].playerposy / height)
+		if (enemyvisibley == (player[playerindex1].playerposy / height))
 		{
-			if (enemyvisiblex == player[playerindex1].playerposx / width)
+			if (enemyvisiblex == (player[playerindex1].playerposx / width))
 			{
 						mvprintw(enemy[enemiesindex1].enemiesposy % height, enemy[enemiesindex1].enemiesposx % width, enemy[enemiesindex1].character1);
 			}

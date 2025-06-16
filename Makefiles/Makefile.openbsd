@@ -1,5 +1,5 @@
 playerandenemies:
-	clang++ -o playerandenemies main.cpp /usr/lib/libncursesw.a
+	clang++ -o playerandenemies main.cpp /usr/lib/libncurses.a
 
 clean:
 	rm -f playerandenemies
