@@ -742,7 +742,22 @@ int main()
 		{
 			if (enemyvisiblex == (player[playerindex1].playerposx / width))
 			{
-						mvprintw(enemy[enemiesindex1].enemiesposy % height, enemy[enemiesindex1].enemiesposx % width, enemy[enemiesindex1].character1);
+				if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+				{
+					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+				}
+				else if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx < 0)
+				{
+					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+				}
+				else if (enemy[enemiesindex1].enemiesposy < 0 && enemy[enemiesindex1].enemiesposx < 0)
+				{
+					mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+				}
+				else
+				{
+					mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+				}
 			}
 		}
 	}
@@ -2738,7 +2753,22 @@ int main()
 			{
 				if (enemyvisiblex == (player[playerindex1].playerposx / width))
 				{
-					mvprintw(enemy[enemiesindex1].enemiesposy % height, enemy[enemiesindex1].enemiesposx % width, enemy[enemiesindex1].character1);
+					if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
+					{
+						mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					}
+					else if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx < 0)
+					{
+						mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					}
+					else if (enemy[enemiesindex1].enemiesposy < 0 && enemy[enemiesindex1].enemiesposx < 0)
+					{
+						mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					}
+					else
+					{
+						mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					}
 				}
 			}
 		}
