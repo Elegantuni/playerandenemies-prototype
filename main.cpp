@@ -44,6 +44,8 @@ int main()
 	int enemyvisibley = 0;
 	int enemiesindex1_max = 0;
 	int statcharacter = -1;
+	int playermovement = 0;
+	int enemiesmovement = 0;
 
 	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
@@ -791,73 +793,97 @@ int main()
 		
 		if(ch == 'a')
 		{
-			player[playerindex1].playerposx--;
-
-			for(int i = 0; i < enemiesamountreal; i++)
+			if(playermovement == 1)
 			{
-				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
-				{
-					player[playerindex1].playerposx++;
-				}
 			}
-
-			if(player[playerindex1].playerposx < 0 && player[playerindex1].playerposx < -mapwidth)
+			else if(playermovement == 0)
 			{
-				player[playerindex1].playerposx = -mapwidth;
+				player[playerindex1].playerposx--;
+
+				for(int i = 0; i < enemiesamountreal; i++)
+				{
+					if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+					{
+						player[playerindex1].playerposx++;
+					}
+				}
+
+				if(player[playerindex1].playerposx < 0 && player[playerindex1].playerposx < -mapwidth)
+				{
+					player[playerindex1].playerposx = -mapwidth;
+				}
 			}
 		}
 
 		if(ch == 'd')
 		{
-			player[playerindex1].playerposx++;
-
-			for(int i = 0; i < enemiesamountreal; i++)
+			if(playermovement == 1)
 			{
-				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
-				{
-					player[playerindex1].playerposx--;
-				}
 			}
-
-			if(player[playerindex1].playerposx > mapwidth)
+			else if(playermovement == 0)
 			{
-				player[playerindex1].playerposx = mapwidth;
+				player[playerindex1].playerposx++;
+
+				for(int i = 0; i < enemiesamountreal; i++)
+				{
+					if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+					{
+						player[playerindex1].playerposx--;
+					}
+				}
+
+				if(player[playerindex1].playerposx > mapwidth)
+				{
+					player[playerindex1].playerposx = mapwidth;
+				}
 			}
 		}
 
 		if(ch == 'w')
 		{
-			player[playerindex1].playerposy--;
-
-			for(int i = 0; i < enemiesamountreal; i++)
+			if(playermovement == 1)
 			{
-				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
-				{
-					player[playerindex1].playerposy++;
-				}
 			}
-
-			if(player[playerindex1].playerposy < 0 && player[playerindex1].playerposy < -mapheight)
+			else if(playermovement == 0)
 			{
-				player[playerindex1].playerposy = -mapheight;
+				player[playerindex1].playerposy--;
+
+				for(int i = 0; i < enemiesamountreal; i++)
+				{
+					if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+					{
+						player[playerindex1].playerposy++;
+					}
+				}
+
+				if(player[playerindex1].playerposy < 0 && player[playerindex1].playerposy < -mapheight)
+				{
+					player[playerindex1].playerposy = -mapheight;
+				}
 			}
 		}
 
 		if(ch == 's')
 		{
-			player[playerindex1].playerposy++;
-
-			for(int i = 0; i < enemiesamountreal; i++)
+			if(playermovement == 1)
 			{
-				if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
-				{
-					player[playerindex1].playerposy--;
-				}
 			}
-
-			if(player[playerindex1].playerposy > mapheight)
+			else if(playermovement == 0)
 			{
-				player[playerindex1].playerposy = mapheight;
+				player[playerindex1].playerposy++;
+
+				for(int i = 0; i < enemiesamountreal; i++)
+				{
+					if(player[playerindex1].playerposx == enemy[i].enemiesposx && player[playerindex1].playerposy == enemy[i].enemiesposy)
+					{
+						player[playerindex1].playerposy--;
+					}
+				}
+
+				if(player[playerindex1].playerposy > mapheight)
+				{
+					player[playerindex1].playerposy = mapheight;
+				}
 			}
 		}
 
