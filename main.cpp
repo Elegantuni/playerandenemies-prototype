@@ -1,4 +1,4 @@
-#if defined(_WIN32)
+#if defined(_WIN32) || defined(__MINIX3__)
 	#include <curses.h>
 #else
 	#include <ncurses.h>
@@ -731,7 +731,12 @@ int main()
 	}
 	
 	initscr();
-	resize_term(mapheight, mapwidth);
+	#if defined(__MINIX3__)
+		resizeterm(mapheight, mapwidth);
+	#else
+		resize_term(mapheight, mapwidth);
+	#endif
+
 	noecho();
 	cbreak();
 

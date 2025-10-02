@@ -1,0 +1,6 @@
+playerandenemies:
+	clang++ -o playerandenemies main.cpp -lcurses -D__MINIX3__
+
+clean:
+	rm -f playerandenemies
+
