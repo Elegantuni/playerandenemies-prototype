@@ -795,6 +795,11 @@ int main()
 	while((ch = getch()) != 'q')
 	{
 		clear();
+
+		if(ch == 'f')
+		{
+			playermovement = !playermovement;
+		}
 		
 		if(ch == 'a')
 		{
@@ -928,7 +933,10 @@ int main()
 			mvprintw(screeny, screenx, "Press a key to exit this help");
 			screeny++;
 			mvprintw(screeny, screenx, "Press c to view enemy positions");
-
+			
+			screeny++;
+			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off");
+			
 			refresh();
 			
 			getch();
