@@ -138,8 +138,8 @@ int main()
 	struct enemiescharacter* enemy = (struct enemiescharacter *) malloc(sizeof(struct enemiescharacter) * enemiesamountreal);
 #endif
 
-	player[playerindex1].playerposx = -500;
-	player[playerindex1].playerposy = -500;
+	player[playerindex1].playerposx = -mapwidth;
+	player[playerindex1].playerposy = -mapheight;
 
 	enemy[enemiesindex1].enemiesposx = rand() % (2*mapwidth);
 	enemy[enemiesindex1].enemiesposy = rand() % (2*mapheight);
@@ -799,13 +799,35 @@ int main()
 		if(ch == 'f')
 		{
 			playermovement = !playermovement;
+
+			if(playermovement != 0)
+			{
+				clear();
+
+				for(int j = 1; j >= -1; j--)
+				{
+					for(int i = -3; i <= 3; i++)
+					{
+						if((player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight))
+						{
+							mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), player[playerindex1].character1);		
+						}
+
+						if(i == 3 && j == -1)
+						{
+							move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
+							refresh();
+						}
+					}
+				}
+			}
 		}
 		
 		if(ch == 'a')
 		{
 			if(playermovement == 1)
 			{
-			}
+			} 
 			else if(playermovement == 0)
 			{
 				player[playerindex1].playerposx--;
@@ -2837,6 +2859,29 @@ int main()
 		{
 			mvprintw(0 % height, 0 % width, "Enemy %d is at %d, %d", statcharacter + 1, enemy[statcharacter].enemiesposx, enemy[statcharacter].enemiesposy);
 			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1 + 1, player[playerindex1].playerposx, player[playerindex1].playerposy);
+		}
+
+		
+		if(playermovement != 0)
+		{
+			clear();
+
+			for(int j = 1; j >= -1; j--)
+			{
+				for(int i = -3; i <= 3; i++)
+				{
+					if((player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight))
+					{
+						mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), player[playerindex1].character1);		
+					}
+
+					if(i == 3 && j == -1)
+					{
+						move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
+						refresh();
+					}
+				}
+			}
 		}
 
 		refresh();
