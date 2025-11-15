@@ -810,11 +810,12 @@ int main()
 					{
 						if((player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight))
 						{
-							mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), player[playerindex1].character1);		
+							mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), "P");		
 						}
 
 						if(i == 3 && j == -1)
 						{
+							mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
 							move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 							refresh();
 						}
@@ -2872,13 +2873,14 @@ int main()
 				{
 					if((player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight))
 					{
-						mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), player[playerindex1].character1);		
+						mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), "P");		
 					}
 
 					if(i == 3 && j == -1)
 					{
+						mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
 						move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
-						refresh();
+						refresh();		
 					}
 				}
 			}
@@ -2888,6 +2890,5 @@ int main()
 	}
 
 	endwin();
-
 	return 0;
 }
