@@ -739,6 +739,7 @@ int main()
 
 	noecho();
 	cbreak();
+	keypad(stdscr, TRUE);
 
 	for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
 	{
@@ -791,7 +792,13 @@ int main()
 	}
 
 	refresh();
-	
+
+	int loopcount = 0;
+	int posx;
+	int posy;
+	int posindex1x;
+	int posindex1y;
+
 	while((ch = getch()) != 'q')
 	{
 		clear();
@@ -821,8 +828,71 @@ int main()
 						}
 					}
 				}
+
+				while((ch = getch()) != 'f')
+				{
+					if(loopcount == 0)
+					{
+						posx = player[playerindex1].playerposx;
+						posy = player[playerindex1].playerposy;
+						posindex1x = player[playerindex1].playerposx;
+						posindex1y = player[playerindex1].playerposy;
+						loopcount++;
+					}
+
+					if(ch == 'a')
+					{
+						posx--;
+						posindex1x++;
+
+					}
+					if(ch == 'd')
+					{
+						posx++;
+						posindex1x--;
+					}
+					if(ch == 'w')
+					{
+						posy--;
+						posindex1y++;
+					}
+					if(ch == 's')
+					{
+						posy++;
+						posindex1y--;
+					}
+
+					for(int j = -1; j <= 1; j++)
+					{
+						for(int i = -3; i <= 3; i++)
+						{
+							if((player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i > -2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j > -2*mapheight) || (player[playerindex1].playerposx+i < 2*mapwidth && player[playerindex1].playerposy+j < 2*mapheight))
+							{
+								mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), "P");		
+							}
+						
+							if(i == 3 && j == 1)
+							{
+								mvprintw(height - abs(posindex1y % height), width - abs(posindex1x % width), player[playerindex1].character1);
+								move(height - abs(posindex1y % height), width - abs(posindex1x % width));
+								refresh();
+							}
+						}
+					}
+					
+					if(ch == 'q')
+					{
+						if((abs(posx - player[playerindex1].playerposx) <= 3) && (abs(posy - player[playerindex1].playerposy) <= 1))
+						{
+							player[playerindex1].playerposx = posx;
+							player[playerindex1].playerposy = posy;
+						}
+					}
+				}
 			}
 		}
+
+		loopcount = 0;
 		
 		if(ch == 'a')
 		{
@@ -958,7 +1028,7 @@ int main()
 			mvprintw(screeny, screenx, "Press c to view enemy positions");
 			
 			screeny++;
-			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off");
+			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. q to update position and then press f again to exit attack movement");
 			
 			refresh();
 			
@@ -2867,7 +2937,7 @@ int main()
 		{
 			clear();
 
-			for(int j = 1; j >= -1; j--)
+			for(int j = -1; j <= 1; j++)
 			{
 				for(int i = -3; i <= 3; i++)
 				{
@@ -2876,7 +2946,7 @@ int main()
 						mvprintw(height	- abs((player[playerindex1].playerposy%height+j)), width - abs((player[playerindex1].playerposx%width+i)), "P");		
 					}
 
-					if(i == 3 && j == -1)
+					if(i == 3 && j == 1)
 					{
 						mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
 						move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
