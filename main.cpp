@@ -1028,7 +1028,7 @@ int main()
 			mvprintw(screeny, screenx, "Press c to view enemy positions");
 			
 			screeny++;
-			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. q to update position and then press f again to exit attack movement");
+			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. a,d,w,s to move around. q to update position and then press f again to exit attack movement");
 			
 			refresh();
 			
