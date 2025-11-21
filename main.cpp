@@ -773,10 +773,34 @@ int main()
 	int loopcount = 0;
 	int posx = player[playerindex1].playerposx;
 	int posy = player[playerindex1].playerposy;
-
+	
+	if (posy >= 0 && posx >= 0)
+	{
+		mvprintw(abs(posy % height), abs(posx % width), player[playerindex1].character1);
+		move(abs(posy % height), abs(posx % width));
+	}
+	else if (posy >= 0 && posx < 0)
+	{
+		mvprintw(abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
+		move(abs(posy % height), width - abs(posx % width));
+	}
+	else if (posy < 0 && posx < 0)
+	{
+		mvprintw(height - abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
+		move(height - abs(posy % height), width - abs(posx % width));
+	}
+	else
+	{
+		mvprintw(height - abs(posy % height), abs(posx % width), player[playerindex1].character1);
+		move(height - abs(posy % height), abs(posx % width));
+	}
+	refresh();
+	
 	while((ch = getch()) != 'q')
 	{
 		clear();
+
+		refresh();
 
 		if(ch == 'f')
 		{
@@ -795,39 +819,39 @@ int main()
 
 							if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 							{
-								mvprintw(abs(player[playerindex1].playerposy % height) + j, abs(player[playerindex1].playerposx % width) + i, "P");
+								mvprintw(abs((player[playerindex1].playerposy+j) % height), abs((player[playerindex1].playerposx+i) % width), "P");
 								move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 							}
 							else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
 							{
-								mvprintw(abs(player[playerindex1].playerposy % height) + j, width - abs(player[playerindex1].playerposx % width) + i, "P");
+								mvprintw(abs((player[playerindex1].playerposy+j) % height), width - abs((player[playerindex1].playerposx+i) % width), "P");
 								move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 							}
 							else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
 							{
-								mvprintw(height - abs(player[playerindex1].playerposy % height) + j, width - abs(player[playerindex1].playerposx % width) + i, "P");
+								mvprintw(height - abs((player[playerindex1].playerposy+j) % height), width - abs((player[playerindex1].playerposx+i) % width), "P");
 								move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 							}
 							else
 							{
-								mvprintw(height - abs(player[playerindex1].playerposy % height) + j, abs(player[playerindex1].playerposx % width) + i, "P");
+								mvprintw(height - abs((player[playerindex1].playerposy+j) % height), abs((player[playerindex1].playerposx+i) % width), "P");
 								move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 							}
 						}
 						
 						if(i == 3 && j == 1)
 						{
-							if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
+							if (posy >= 0 && posx >= 0)
 							{
 								mvprintw(abs(posy % height), abs(posx % width), player[playerindex1].character1);
 								move(abs(posy % height), abs(posx % width));
 							}
-							else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
+							else if (posy >= 0 && posx < 0)
 							{
 								mvprintw(abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
 								move(abs(posy % height), width - abs(posx % width));
 							}
-							else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
+							else if (posy < 0 && posx < 0)
 							{
 								mvprintw(height - abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
 								move(height - abs(posy % height), width - abs(posx % width));
@@ -842,13 +866,16 @@ int main()
 					}
 				}
 
-				while((ch = getch()) != 'f')
+				while((ch = getch()) != 'g')
 				{
+					clear();
+
 					if(loopcount == 0)
 					{
 						posx = player[playerindex1].playerposx;
 						posy = player[playerindex1].playerposy;
 						loopcount++;
+						clear();
 					}
 
 					if(ch == 'a')
@@ -898,17 +925,17 @@ int main()
 							if(i == 3 && j == 1)
 							{
 
-								if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
+								if (posy >= 0 && posx >= 0)
 								{
 									mvprintw(abs(posy % height), abs(posx % width), player[playerindex1].character1);
 									move(abs(posy % height), abs(posx % width));
 								}
-								else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
+								else if (posy >= 0 && posx < 0)
 								{
 									mvprintw(abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
 									move(abs(posy % height), width - abs(posx % width));
 								}
-								else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
+								else if (posy < 0 && posx < 0)
 								{
 									mvprintw(height - abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
 									move(height - abs(posy % height), width - abs(posx % width));
@@ -1069,9 +1096,8 @@ int main()
 			mvprintw(screeny, screenx, "Press a key to exit this help");
 			screeny++;
 			mvprintw(screeny, screenx, "Press c to view enemy positions");
-			
 			screeny++;
-			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. a,d,w,s to move around. q to update position and then press f again to exit attack movement");
+			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. a,d,w,s to move around. q to update position and then press g again to exit attack movement");
 			
 			refresh();
 			
@@ -2975,8 +3001,6 @@ int main()
 			mvprintw(1 % height, 0 % width, "Player %d is at %d, %d", playerindex1 + 1, player[playerindex1].playerposx, player[playerindex1].playerposy);
 		}
 
-		#if 0
-		
 		if(playermovement != 0)
 		{
 			clear();
@@ -3037,8 +3061,6 @@ int main()
 				}
 			}
 		}
-
-		#endif
 
 		refresh();
 	}
