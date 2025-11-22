@@ -800,8 +800,6 @@ int main()
 	{
 		clear();
 
-		refresh();
-
 		if(ch == 'f')
 		{
 			playermovement = !playermovement;
@@ -820,22 +818,18 @@ int main()
 							if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 							{
 								mvprintw(abs((player[playerindex1].playerposy+j) % height), abs((player[playerindex1].playerposx+i) % width), "P");
-								move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 							}
 							else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
 							{
 								mvprintw(abs((player[playerindex1].playerposy+j) % height), width - abs((player[playerindex1].playerposx+i) % width), "P");
-								move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 							}
 							else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
 							{
 								mvprintw(height - abs((player[playerindex1].playerposy+j) % height), width - abs((player[playerindex1].playerposx+i) % width), "P");
-								move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 							}
 							else
 							{
 								mvprintw(height - abs((player[playerindex1].playerposy+j) % height), abs((player[playerindex1].playerposx+i) % width), "P");
-								move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 							}
 						}
 						
@@ -843,23 +837,23 @@ int main()
 						{
 							if (posy >= 0 && posx >= 0)
 							{
-								mvprintw(abs(posy % height), abs(posx % width), player[playerindex1].character1);
-								move(abs(posy % height), abs(posx % width));
+								mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+								move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 							}
 							else if (posy >= 0 && posx < 0)
 							{
-								mvprintw(abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
-								move(abs(posy % height), width - abs(posx % width));
+								mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+								move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 							}
 							else if (posy < 0 && posx < 0)
 							{
-								mvprintw(height - abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
-								move(height - abs(posy % height), width - abs(posx % width));
+								mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+								move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 							}
 							else
 							{
-								mvprintw(height - abs(posy % height), abs(posx % width), player[playerindex1].character1);
-								move(height - abs(posy % height), abs(posx % width));
+								mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+								move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 							}
 							refresh();
 						}
@@ -1097,7 +1091,7 @@ int main()
 			screeny++;
 			mvprintw(screeny, screenx, "Press c to view enemy positions");
 			screeny++;
-			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. a,d,w,s to move around. q to update position and then press g again to exit attack movement");
+			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. a,d,w,s to move around. q to update position and then press g and then f to exit attack movement");
 			
 			refresh();
 			
