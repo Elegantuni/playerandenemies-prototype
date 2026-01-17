@@ -837,7 +837,7 @@ int main()
 						{
 							for(int o=0; o <= enemiesamount; o++)
 							{
-							if((player[playerindex1].playerposx != enemy[o].enemiesposx) || (player[playerindex1].playerposy != enemy[o].enemiesposy))
+							if((player[playerindex1].playerposx != enemy[o].enemiesposx) && (player[playerindex1].playerposy != enemy[o].enemiesposy))
 							{	
 								if (posy >= 0 && posx >= 0)
 								{
@@ -862,8 +862,6 @@ int main()
 							}
 							else
 							{
-								player[playerindex1].playerposx--;
-
 								if (posy >= 0 && posx >= 0)
 								{
 									mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
@@ -907,18 +905,50 @@ int main()
 					if(ch == 'a')
 					{
 						posx--;
+
+						for (int j = 0; j < enemiesamount; j++)
+						{
+							if ((posx == enemy[j].enemiesposx) && (posy == enemy[j].enemiesposy))
+							{
+								posx++;
+							}
+						}
 					}
 					if(ch == 'd')
 					{
 						posx++;
+
+						for (int j = 0; j < enemiesamount; j++)
+						{
+							if ((posx == enemy[j].enemiesposx) && (posy == enemy[j].enemiesposy))
+							{
+								posx--;
+							}
+						}
 					}
 					if(ch == 'w')
 					{
 						posy--;
+
+						for (int j = 0; j < enemiesamount; j++)
+						{
+							if ((posx == enemy[j].enemiesposx) && (posy == enemy[j].enemiesposy))
+							{
+								posy++;
+							}
+						}
 					}
 					if(ch == 's')
 					{
 						posy++;
+
+						for (int j = 0; j < enemiesamount; j++)
+						{
+							if ((posx == enemy[j].enemiesposx) && (posy == enemy[j].enemiesposy))
+							{
+								posy--;
+							}
+						}
 					}
 
 					for(int j = -1; j <= 1; j++)
