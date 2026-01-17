@@ -138,8 +138,8 @@ int main()
 	struct enemiescharacter* enemy = (struct enemiescharacter *) malloc(sizeof(struct enemiescharacter) * enemiesamountreal);
 #endif
 
-	player[playerindex1].playerposx = -mapwidth;
-	player[playerindex1].playerposy = -mapheight;
+	player[playerindex1].playerposx = rand() % (2*mapwidth);
+	player[playerindex1].playerposy = rand() % (2*mapheight);
 
 	enemy[enemiesindex1].enemiesposx = rand() % (2*mapwidth);
 	enemy[enemiesindex1].enemiesposy = rand() % (2*mapheight);
@@ -154,12 +154,12 @@ int main()
 	
 	FILE* fp1 = fopen("Data/PlayerCharacter.txt", "r");
 
-	if (fp1 == NULL)
+	if(fp1 == NULL)
 	{
 		cout << "Can't open Data/PlayerCharacter.txt" << endl;
 
 		return 0;
-	}
+	}	
 
 	int characternow1 = fgetc(fp1);
 	char characternow2 = (char)characternow1;
@@ -752,19 +752,19 @@ int main()
 			{
 				if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
 				{
-					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 				}
 				else if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx < 0)
 				{
-					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 				}
 				else if (enemy[enemiesindex1].enemiesposy < 0 && enemy[enemiesindex1].enemiesposx < 0)
 				{
-					mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 				}
 				else
 				{
-					mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+					mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 				}
 			}
 		}
@@ -776,22 +776,22 @@ int main()
 	
 	if (posy >= 0 && posx >= 0)
 	{
-		mvprintw(abs(posy % height), abs(posx % width), player[playerindex1].character1);
+		mvprintw(abs(posy % height), abs(posx % width), "%s", player[playerindex1].character1);
 		move(abs(posy % height), abs(posx % width));
 	}
 	else if (posy >= 0 && posx < 0)
 	{
-		mvprintw(abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
+		mvprintw(abs(posy % height), width - abs(posx % width), "%s", player[playerindex1].character1);
 		move(abs(posy % height), width - abs(posx % width));
 	}
 	else if (posy < 0 && posx < 0)
 	{
-		mvprintw(height - abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
+		mvprintw(height - abs(posy % height), width - abs(posx % width), "%s", player[playerindex1].character1);
 		move(height - abs(posy % height), width - abs(posx % width));
 	}
 	else
 	{
-		mvprintw(height - abs(posy % height), abs(posx % width), player[playerindex1].character1);
+		mvprintw(height - abs(posy % height), abs(posx % width), "%s", player[playerindex1].character1);
 		move(height - abs(posy % height), abs(posx % width));
 	}
 	refresh();
@@ -841,22 +841,22 @@ int main()
 							{	
 								if (posy >= 0 && posx >= 0)
 								{
-									mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 								}
 								else if (posy >= 0 && posx < 0)
 								{
-									mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 								}
 								else if (posy < 0 && posx < 0)
 								{
-									mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 								}
 								else
 								{
-									mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 								}
 							}
@@ -864,22 +864,22 @@ int main()
 							{
 								if (posy >= 0 && posx >= 0)
 								{
-									mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 								}
 								else if (posy >= 0 && posx < 0)
 								{
-									mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 								}
 								else if (posy < 0 && posx < 0)
 								{
-									mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 								}
 								else
 								{
-									mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+									mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 									move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 								}
 							}
@@ -983,22 +983,22 @@ int main()
 
 								if (posy >= 0 && posx >= 0)
 								{
-									mvprintw(abs(posy % height), abs(posx % width), player[playerindex1].character1);
+									mvprintw(abs(posy % height), abs(posx % width), "%s", player[playerindex1].character1);
 									move(abs(posy % height), abs(posx % width));
 								}
 								else if (posy >= 0 && posx < 0)
 								{
-									mvprintw(abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
+									mvprintw(abs(posy % height), width - abs(posx % width), "%s", player[playerindex1].character1);
 									move(abs(posy % height), width - abs(posx % width));
 								}
 								else if (posy < 0 && posx < 0)
 								{
-									mvprintw(height - abs(posy % height), width - abs(posx % width), player[playerindex1].character1);
+									mvprintw(height - abs(posy % height), width - abs(posx % width), "%s", player[playerindex1].character1);
 									move(height - abs(posy % height), width - abs(posx % width));
 								}
 								else
 								{
-									mvprintw(height - abs(posy % height), abs(posx % width), player[playerindex1].character1);
+									mvprintw(height - abs(posy % height), abs(posx % width), "%s", player[playerindex1].character1);
 									move(height - abs(posy % height), abs(posx % width));
 								}
 								refresh();
@@ -1177,7 +1177,7 @@ int main()
 				
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].textheads[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].textheads[i]);
 				}
 			}
 			if (itempos1 == 1)
@@ -1190,7 +1190,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
+					mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textarms[i]);
 				}
 			}
 			if (itempos1 == 2)
@@ -1203,7 +1203,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
+					mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textlegs[i]);
 				}
 			}
 			if (itempos1 == 3)
@@ -1216,7 +1216,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
+					mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textnecks[i]);
 				}
 			}
 			if (itempos1 == 4)
@@ -1229,7 +1229,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
+					mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textshoulders[i]);
 				}
 			}
 			if (itempos1 == 5)
@@ -1242,7 +1242,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
+					mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textbacks[i]);
 				}
 			}
 			if (itempos1 == 6)
@@ -1255,7 +1255,7 @@ int main()
 
 				for (int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+					mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textchests[i]);
 				}
 			}
 			if(itempos1 == 7)
@@ -1268,7 +1268,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoes[i]);
 				}
 			}
 			if(itempos1 == 8)
@@ -1281,7 +1281,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].textwrists[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].textwrists[i]);
 				}
 			}
 			if(itempos1 == 9)
@@ -1294,7 +1294,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].textwaists[i]);
 				}
 			}
 			if(itempos1 == 10)
@@ -1307,7 +1307,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].textnails[i]);
 				}
 			}
 			if(itempos1 == 11)
@@ -1320,7 +1320,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].texttoenails[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoenails[i]);
 				}
 			}
 			if(itempos1 == 12)
@@ -1333,7 +1333,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].texteyes[i]);
 				}
 			}
 			if(itempos1 == 13)
@@ -1346,7 +1346,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].textlips[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].textlips[i]);
 				}
 			}
 			if(itempos1 == 14)
@@ -1359,7 +1359,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].textfeet[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].textfeet[i]);
 				}
 			}
 			if(itempos1 == 15)
@@ -1372,7 +1372,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].textteeth[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].textteeth[i]);
 				}
 			}
 			if(itempos1 == 16)
@@ -1385,7 +1385,7 @@ int main()
 
 				for(int i = 0; i <= indexpos1; i++)
 				{
-					mvprintw(i%24+5, 0, player[playerindex1].texthair[i]);
+					mvprintw(i%24+5, 0, "%s", player[playerindex1].texthair[i]);
 				}
 			}
 
@@ -1414,7 +1414,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -1427,7 +1427,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -1440,7 +1440,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -1453,7 +1453,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -1466,7 +1466,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -1479,7 +1479,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -1492,7 +1492,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textchests[i]);
 						}
 					}
 					if(itempos1 == 7)
@@ -1505,7 +1505,7 @@ int main()
 
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoes[i]);
 						}
 					}
 					if(itempos1 == 8)
@@ -1518,7 +1518,7 @@ int main()
 
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textwrists[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textwrists[i]);
 						}
 					}
 					if(itempos1 == 9)
@@ -1531,7 +1531,7 @@ int main()
 
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textwaists[i]);
 						}
 					}
 					if(itempos1 == 10)
@@ -1544,7 +1544,7 @@ int main()
 
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textnails[i]);
 						}
 					}
 					if(itempos1 == 11)
@@ -1557,7 +1557,7 @@ int main()
 
                   				for(int i = 0; i <= indexpos1; i++)
                   				{
-                     					mvprintw(i%24+5, 0, player[playerindex1].texttoenails[i]);
+                     					mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoenails[i]);
                   				}
                				}
 					if(itempos1 == 12)
@@ -1570,7 +1570,7 @@ int main()
 
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].texteyes[i]);
 						}
 					}
 					if (itempos1 == 13)
@@ -1582,7 +1582,7 @@ int main()
 						mvprintw(4, 0, "Player Lips");
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textlips[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textlips[i]);
 						}
 					}
 					if(itempos1 == 14)
@@ -1595,7 +1595,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textfeet[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textfeet[i]);
 						}
 					}
 					if(itempos1 == 15)
@@ -1608,7 +1608,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textteeth[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textteeth[i]);
 						}
 					}
 					if(itempos1 == 16)
@@ -1621,7 +1621,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].texthair[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].texthair[i]);
 						}
 					}
 
@@ -1647,7 +1647,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -1660,7 +1660,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -1673,7 +1673,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -1686,7 +1686,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -1699,7 +1699,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -1712,7 +1712,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -1725,7 +1725,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textchests[i]);
 						}
 					}
 					if(itempos1 == 7)
@@ -1737,7 +1737,7 @@ int main()
 						mvprintw(4, 0, "Player Toes");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoes[i]);
 						}
 					}
 					if(itempos1 == 8)
@@ -1749,7 +1749,7 @@ int main()
 						mvprintw(4, 0, "Player Wrists");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textwrists[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textwrists[i]);
 						}
 					}
 					if(itempos1 == 9)
@@ -1761,7 +1761,7 @@ int main()
 						mvprintw(4, 0, "Player Waists");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textwaists[i]);
 						}
 					}
 					if(itempos1 == 10)
@@ -1773,7 +1773,7 @@ int main()
 						mvprintw(4, 0, "Player Nails");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textnails[i]);
 						}
 					}
 					if(itempos1 == 11)
@@ -1786,7 +1786,7 @@ int main()
                   				
 						for(int i = 0; i <= indexpos1; i++)
                   				{
-                     					mvprintw(i%24+5, 0, player[playerindex1].texttoenails[i]);
+                     					mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoenails[i]);
                   				}
                				}
 					if(itempos1 == 12)
@@ -1798,7 +1798,7 @@ int main()
 						mvprintw(4, 0, "Player Eyes");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].texteyes[i]);
 						}
 					}
 					if (itempos1 == 13)
@@ -1810,7 +1810,7 @@ int main()
 						mvprintw(4, 0, "Player Lips");
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textlips[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textlips[i]);
 						}
 					}
 					if(itempos1 == 14)
@@ -1823,7 +1823,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textfeet[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textfeet[i]);
 						}
 					}
 					if(itempos1 == 15)
@@ -1836,7 +1836,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textteeth[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].textteeth[i]);
 						}
 					}
 					if(itempos1 == 16)
@@ -1849,7 +1849,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].texthair[i]);
+							mvprintw(i % 24 + 5, 0, "%s",  player[playerindex1].texthair[i]);
 						}
 					}
 
@@ -1875,7 +1875,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textheads[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textheads[i]);
 						}
 					}
 					if (itempos1 == 1)
@@ -1888,7 +1888,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textarms[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textarms[i]);
 						}
 					}
 					if (itempos1 == 2)
@@ -1901,7 +1901,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textlegs[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textlegs[i]);
 						}
 					}
 					if (itempos1 == 3)
@@ -1914,7 +1914,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textnecks[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textnecks[i]);
 						}
 					}
 					if (itempos1 == 4)
@@ -1927,7 +1927,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textshoulders[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textshoulders[i]);
 						}
 					}
 					if (itempos1 == 5)
@@ -1940,7 +1940,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textbacks[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textbacks[i]);
 						}
 					}
 					if (itempos1 == 6)
@@ -1953,7 +1953,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textchests[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textchests[i]);
 						}
 					}
 					if(itempos1 == 7)
@@ -1965,7 +1965,7 @@ int main()
 						mvprintw(4, 0, "Player Toes");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].texttoes[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoes[i]);
 						}
 					}
 					if(itempos1 == 8)
@@ -1977,7 +1977,7 @@ int main()
 						mvprintw(4, 0, "Player Wrists");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textwrists[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textwrists[i]);
 						}
 					}
 					if(itempos1 == 9)
@@ -1989,7 +1989,7 @@ int main()
 						mvprintw(4, 0, "Player Waists");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textwaists[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textwaists[i]);
 						}
 					}
 					if(itempos1 == 10)
@@ -2001,7 +2001,7 @@ int main()
 						mvprintw(4, 0, "Player Nails");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].textnails[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].textnails[i]);
 						}
 					}
 					if(itempos1 == 11)
@@ -2014,7 +2014,7 @@ int main()
                   
 						for(int i = 0; i <= indexpos1; i++)
                   				{
-                     					mvprintw(i%24+5, 0, player[playerindex1].texttoenails[i]);
+                     					mvprintw(i%24+5, 0, "%s", player[playerindex1].texttoenails[i]);
                   				}
                				}
 					if(itempos1 == 12)
@@ -2026,7 +2026,7 @@ int main()
 						mvprintw(4, 0, "Player Eyes");
 						for(int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i%24+5, 0, player[playerindex1].texteyes[i]);
+							mvprintw(i%24+5, 0, "%s", player[playerindex1].texteyes[i]);
 						}
 					}
 					if (itempos1 == 13)
@@ -2038,7 +2038,7 @@ int main()
 						mvprintw(4, 0, "Player Lips");
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textlips[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textlips[i]);
 						}
 					}
 					if(itempos1 == 14)
@@ -2051,7 +2051,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textfeet[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textfeet[i]);
 						}
 					}
 					if(itempos1 == 15)
@@ -2064,7 +2064,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].textteeth[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].textteeth[i]);
 						}
 					}
 					if(itempos1 == 16)
@@ -2077,7 +2077,7 @@ int main()
 
 						for (int i = 0; i <= indexpos1; i++)
 						{
-							mvprintw(i % 24 + 5, 0, player[playerindex1].texthair[i]);
+							mvprintw(i % 24 + 5, 0, "%s", player[playerindex1].texthair[i]);
 						}
 					}
 
@@ -2101,19 +2101,19 @@ int main()
 				{
 					if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx >= 0)
 					{
-						mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+						mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 					}
 					else if (enemy[enemiesindex1].enemiesposy >= 0 && enemy[enemiesindex1].enemiesposx < 0)
 					{
-						mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+						mvprintw(abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 					}
 					else if (enemy[enemiesindex1].enemiesposy < 0 && enemy[enemiesindex1].enemiesposx < 0)
 					{
-						mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+						mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), width - abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 					}
 					else
 					{
-						mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), enemy[enemiesindex1].character1);
+						mvprintw(height - abs(enemy[enemiesindex1].enemiesposy % height), abs(enemy[enemiesindex1].enemiesposx % width), "%s", enemy[enemiesindex1].character1);
 					}
 				}
 			}
@@ -2121,22 +2121,22 @@ int main()
 
 		if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 		{
-			mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 			move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 		}
 		else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
 		{
-			mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 			move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 		}
 		else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
 		{
-			mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 			move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 		}
 		else
 		{
-			mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+			mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 			move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 		}
 
@@ -2182,22 +2182,22 @@ int main()
 					{
 						if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 						{
-							mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+							mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 							move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 						}
 						else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
 						{
-							mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+							mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 							move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 						}
 						else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
 						{
-							mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+							mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 							move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 						}
 						else
 						{
-							mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+							mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 							move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 						}
 						
@@ -2210,22 +2210,22 @@ int main()
 		{
 			if(player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 			{
-				mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+				mvprintw(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 				move(abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 			}
 			else if(player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
 			{
-				mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+				mvprintw(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 				move(abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 			}
 			else if(player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
 			{
-				mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+				mvprintw(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 				move(height - abs(player[playerindex1].playerposy % height), width - abs(player[playerindex1].playerposx % width));
 			}
 			else
 			{
-				mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), player[playerindex1].character1);
+				mvprintw(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width), "%s", player[playerindex1].character1);
 				move(height - abs(player[playerindex1].playerposy % height), abs(player[playerindex1].playerposx % width));
 			}
 
