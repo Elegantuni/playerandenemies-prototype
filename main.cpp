@@ -10,6 +10,7 @@
 #include "enemiescharacter.h"
 #include "typeofobjects.h"
 #include <math.h>
+#include <cstring>
 #include <iostream>
 using namespace std;
 
@@ -46,6 +47,8 @@ int main()
 	int statcharacter = -1;
 	int playermovement = 0;
 	int enemiesmovement = 0;
+	int neutralindex1 = 0;
+	int neutralindex1_max = 100;
 
 	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
@@ -240,6 +243,50 @@ int main()
 		enemy[enemiesindex1].character1[1] = '\0';
 
 		enemiesindex1_max = enemiesamountreal;
+	}
+
+	char buffer1[100][30];
+	int nposy;
+	int nposx;
+	char buffer1signs[100][2];
+
+	strcpy(buffer1[neutralindex1], "Hitpoints");
+	strcpy(buffer1signs[neutralindex1], "U");
+
+	neutralindex1++;
+
+	strcpy(buffer1[neutralindex1], "Magicpoints");
+	strcpy(buffer1signs[neutralindex1], "P");
+
+	neutralindex1++;
+
+	for(int i = 0; i < neutralindex1_max; i++)
+	{
+		int index3;
+
+		index3 = rand() % neutralindex1;
+	
+		player[playerindex1].neutralpickups[i] = 1;	
+		strcpy(player[playerindex1].neutral[i], buffer1[index3]);
+		strcpy(player[playerindex1].neutralsigns[i], buffer1signs[index3]);
+
+		player[playerindex1].neutralposy[i] = rand() % mapheight;
+		player[playerindex1].neutralposx[i] = rand() % mapwidth;
+
+		while(player[playerindex1].neutralposy[i] == player[playerindex1].playerposy && player[playerindex1].neutralposx[i] == player[playerindex1].playerposx)
+		{
+			player[playerindex1].neutralposy[i] = rand() % mapheight;
+			player[playerindex1].neutralposx[i] = rand() % mapwidth;
+		}
+
+		for(int j = 0; j < enemiesamount; j++)
+		{
+			while(player[playerindex1].neutralposy[i] == enemy[enemiesindex1].enemiesposy && player[playerindex1].neutralposx[i] == enemy[enemiesindex1].enemiesposx)
+			{
+				player[playerindex1].neutralposy[i] = rand() % mapheight;
+				player[playerindex1].neutralposx[i] = rand() % mapwidth;
+			}
+		}
 	}
 
 	rowpos1 = rand() % 3 + 3;
@@ -769,7 +816,36 @@ int main()
 			}
 		}
 	}
+	
+	for (int i = 0; i <= neutralindex1_max; i++)
+	{
+		enemyvisibley = (player[playerindex1].playerposy / height);
+		enemyvisiblex = (player[playerindex1].playerposx / width);
 
+		if (enemyvisibley == (player[playerindex1].neutralposy[i] / height))
+		{
+			if (enemyvisiblex == (player[playerindex1].neutralposx[i] / width))
+			{
+				if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
+				{
+					mvprintw(abs(player[playerindex1].neutralposy[i] % height), abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+				else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
+				{
+					mvprintw(abs(player[playerindex1].neutralposy[i] % height), width - abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+				else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
+				{
+					mvprintw(height - abs(player[playerindex1].neutralposy[i] % height), width - abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+				else
+				{
+					mvprintw(height - abs(player[playerindex1].neutralposy[i] % height), abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+			}
+		}
+	}
+	
 	int loopcount = 0;
 	int posx = player[playerindex1].playerposx;
 	int posy = player[playerindex1].playerposy;
@@ -794,6 +870,7 @@ int main()
 		mvprintw(height - abs(posy % height), abs(posx % width), "%s", player[playerindex1].character1);
 		move(height - abs(posy % height), abs(posx % width));
 	}
+
 	refresh();
 	
 	while((ch = getch()) != 'q')
@@ -2118,6 +2195,36 @@ int main()
 				}
 			}
 		}
+
+	for (int i = 0; i <= neutralindex1_max; i++)
+	{
+		enemyvisibley = (player[playerindex1].playerposy / height);
+		enemyvisiblex = (player[playerindex1].playerposx / width);
+
+		if (enemyvisibley == (player[playerindex1].neutralposy[i] / height))
+		{
+			if (enemyvisiblex == (player[playerindex1].neutralposx[i] / width))
+			{
+				if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
+				{
+					mvprintw(abs(player[playerindex1].neutralposy[i] % height), abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+				else if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx < 0)
+				{
+					mvprintw(abs(player[playerindex1].neutralposy[i] % height), width - abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+				else if (player[playerindex1].playerposy < 0 && player[playerindex1].playerposx < 0)
+				{
+					mvprintw(height - abs(player[playerindex1].neutralposy[i] % height), width - abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+				else
+				{
+					mvprintw(height - abs(player[playerindex1].neutralposy[i] % height), abs(player[playerindex1].neutralposx[i] % width), "%s", player[playerindex1].neutralsigns[i]);
+				}
+			}
+		}
+	}
+		
 
 		if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 		{

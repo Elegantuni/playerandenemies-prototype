@@ -28,6 +28,11 @@ struct playercharacter
 	int playerindex;
 	char *weapons[10];
 	struct typeofobject playerobject;
+	int neutralpickups[100];
+	char neutral[100][30];
+	int neutralposx[100];
+	int neutralposy[100];
+	char neutralsigns[100][2];
 	int level;
 };
 
