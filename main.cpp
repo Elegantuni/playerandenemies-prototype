@@ -270,21 +270,53 @@ int main()
 		strcpy(player[playerindex1].neutral[i], buffer1[index3]);
 		strcpy(player[playerindex1].neutralsigns[i], buffer1signs[index3]);
 
-		player[playerindex1].neutralposy[i] = rand() % mapheight;
-		player[playerindex1].neutralposx[i] = rand() % mapwidth;
+		player[playerindex1].neutralposy[i] = rand() % (2*mapheight);
+		player[playerindex1].neutralposx[i] = rand() % (2*mapwidth);
+
+		if(player[playerindex1].neutralposy[i] >= mapheight)
+		{
+			player[playerindex1].neutralposy[i] = -player[playerindex1].neutralposy[i] + mapheight;
+		}
+
+		if(player[playerindex1].neutralposx[i] >= mapwidth)
+		{
+			player[playerindex1].neutralposx[i] = -player[playerindex1].neutralposx[i] + mapwidth;
+		}
 
 		while(player[playerindex1].neutralposy[i] == player[playerindex1].playerposy && player[playerindex1].neutralposx[i] == player[playerindex1].playerposx)
 		{
-			player[playerindex1].neutralposy[i] = rand() % mapheight;
-			player[playerindex1].neutralposx[i] = rand() % mapwidth;
+			player[playerindex1].neutralposy[i] = rand() % (2*mapheight);
+			player[playerindex1].neutralposx[i] = rand() % (2*mapwidth);
+
+		if(player[playerindex1].neutralposy[i] >= mapheight)
+		{
+			player[playerindex1].neutralposy[i] = -player[playerindex1].neutralposy[i] + mapheight;
+		}
+
+		if(player[playerindex1].neutralposx[i] >= mapwidth)
+		{
+			player[playerindex1].neutralposx[i] = -player[playerindex1].neutralposx[i] + mapwidth;
+		}
+			
 		}
 
 		for(int j = 0; j < enemiesamount; j++)
 		{
 			while(player[playerindex1].neutralposy[i] == enemy[enemiesindex1].enemiesposy && player[playerindex1].neutralposx[i] == enemy[enemiesindex1].enemiesposx)
 			{
-				player[playerindex1].neutralposy[i] = rand() % mapheight;
-				player[playerindex1].neutralposx[i] = rand() % mapwidth;
+				player[playerindex1].neutralposy[i] = rand() % (2*mapheight);
+				player[playerindex1].neutralposx[i] = rand() % (2*mapwidth);
+
+		if(player[playerindex1].neutralposy[i] >= mapheight)
+		{
+			player[playerindex1].neutralposy[i] = -player[playerindex1].neutralposy[i] + mapheight;
+		}
+
+		if(player[playerindex1].neutralposx[i] >= mapwidth)
+		{
+			player[playerindex1].neutralposx[i] = -player[playerindex1].neutralposx[i] + mapwidth;
+		}
+				
 			}
 		}
 	}
