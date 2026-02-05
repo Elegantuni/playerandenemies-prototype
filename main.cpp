@@ -250,15 +250,34 @@ int main()
 	int nposx;
 	char buffer1signs[100][2];
 
+#if defined(OPENBSD)
+	strlcpy(buffer1[neutralindex1],"Hitpoints", sizeof(buffer1[neutralindex1]));
+	strlcpy(buffer1signs[neutralindex1],"U", sizeof(buffer1signs[neutralindex1]));
+#else
 	strcpy(buffer1[neutralindex1], "Hitpoints");
 	strcpy(buffer1signs[neutralindex1], "U");
+#endif
 
 	neutralindex1++;
-
+#if defined(OPENBSD)
+	strlcpy(buffer1[neutralindex1], "Magicpoints", sizeof(buffer1[neutralindex1]));
+	strlcpy(buffer1signs[neutralindex1], "P", sizeof(buffer1signs[neutralindex1]));
+#else
 	strcpy(buffer1[neutralindex1], "Magicpoints");
 	strcpy(buffer1signs[neutralindex1], "P");
+#endif
 
 	neutralindex1++;
+
+	for(int i = 0; i < enemiesamount; i++)
+	{
+		enemy[i].enemiesobject.health = 100;
+	}
+
+	for(int i = 0; i < playeramount; i++)
+	{
+		player[i].playerobject.health = 100;
+	}
 
 	for(int i = 0; i < neutralindex1_max; i++)
 	{
@@ -267,9 +286,13 @@ int main()
 		index3 = rand() % neutralindex1;
 	
 		player[playerindex1].neutralpickups[i] = 1;	
+#if defined(OPENBSD)
+		strlcpy(player[playerindex1].neutral[i], buffer1[index3], sizeof(player[playerindex1].neutral[i]));
+		strlcpy(player[playerindex1].neutralsigns[i], buffer1signs[index3], sizeof(player[playerindex1].neutralsigns[i]));
+#else
 		strcpy(player[playerindex1].neutral[i], buffer1[index3]);
 		strcpy(player[playerindex1].neutralsigns[i], buffer1signs[index3]);
-
+#endif
 		player[playerindex1].neutralposy[i] = rand() % (2*mapheight);
 		player[playerindex1].neutralposx[i] = rand() % (2*mapwidth);
 
@@ -1298,7 +1321,11 @@ int main()
 						player[playerindex1].playerobject.health += 10;
 						player[playerindex1].neutralpickups[i] = 0;
 
+#if defined(OPENBSD)
+						strlcpy(player[playerindex1].neutralsigns[i], "", sizeof(player[playerindex1].neutralsigns[i]));
+#else
 						strcpy(player[playerindex1].neutralsigns[i], "");
+#endif
 					}
 
 					if(strcmp(player[playerindex1].neutral[i], "Magicpoints") == 0)
@@ -1306,8 +1333,11 @@ int main()
 						player[playerindex1].playerobject.magic += 10;
 
 						player[playerindex1].neutralpickups[i] = 0;
-
+#if defined(OPENBSD)
+						strlcpy(player[playerindex1].neutralsigns[i], "", sizeof(player[playerindex1].neutralsigns[i]));
+#else
 						strcpy(player[playerindex1].neutralsigns[i], "");
+#endif
 					}
 				}
 			}
