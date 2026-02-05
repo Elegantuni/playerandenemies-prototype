@@ -321,6 +321,16 @@ int main()
 		}
 	}
 
+	for(int i = 0; i < playeramount; i++)
+	{
+		player[i].playerobject.health = 100;
+	}
+
+	for(int i = 0; i < playeramount; i++)
+	{
+		player[i].playerobject.magic = 50;
+	}
+
 	rowpos1 = rand() % 3 + 3;
 	rowpos2 = rand() % 3 + 1;
 	
@@ -1262,6 +1272,12 @@ int main()
 			screeny++;
 			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. a,d,w,s to move around. q to update position and then press g and then f to exit attack movement");
 			
+			screeny++;
+			mvprintw(screeny, screenx, "Press g to pick up items when standing on them");
+
+			screeny++;
+			mvprintw(screeny, screenx, "Press k to view player stats");
+
 			refresh();
 			
 			getch();
@@ -1269,6 +1285,45 @@ int main()
 			clear();
 
 			screeny = 0;
+		}
+
+		if(ch == 'g')
+		{
+			for(int i = 0; i < neutralindex1_max; i++)
+			{
+				if((player[playerindex1].playerposx == player[playerindex1].neutralposx[i]) && (player[playerindex1].playerposy == player[playerindex1].neutralposy[i]) && (player[playerindex1].neutralpickups[i] == 1))
+				{
+					if(strcmp(player[playerindex1].neutral[i], "Hitpoints") == 0)
+					{
+						player[playerindex1].playerobject.health += 10;
+						player[playerindex1].neutralpickups[i] = 0;
+
+						strcpy(player[playerindex1].neutralsigns[i], "");
+					}
+
+					if(strcmp(player[playerindex1].neutral[i], "Magicpoints") == 0)
+					{
+						player[playerindex1].playerobject.magic += 10;
+
+						player[playerindex1].neutralpickups[i] = 0;
+
+						strcpy(player[playerindex1].neutralsigns[i], "");
+					}
+				}
+			}
+		}
+
+		if(ch == 'k')
+		{
+				clear();
+
+				mvprintw(0 % height, 0 % width, "Press q to exit this screen");
+				mvprintw(1 % height, 0 % width, "Player %d is at %d, %d Hitpoints: %d Magicpoints: %d", playerindex1 + 1, player[playerindex1].playerposx, player[playerindex1].playerposy, player[playerindex1].playerobject.health, player[playerindex1].playerobject.magic);
+
+				while((ch = getch()) != 'q')
+				{
+					refresh();
+				}
 		}
 
 		if(ch == 'b')

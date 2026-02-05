@@ -11,6 +11,7 @@ struct typeofobject
 	int door;
 	int key;
 	int health;
+	int magic;
 	int ammo;
 	int exit;
 	int trigger;
