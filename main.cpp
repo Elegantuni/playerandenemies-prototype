@@ -23,7 +23,7 @@ struct screenindex
 #define rand() arc4random()
 #endif
 
-int main()
+int main(int argc, char *argv[])
 {
 	srand(time(NULL));
 	int width = 80, height = 24, ch;
@@ -49,6 +49,7 @@ int main()
 	int enemiesmovement = 0;
 	int neutralindex1 = 0;
 	int neutralindex1_max = 100;
+	int index3;
 
 	screenindex[screenindexamount].name = const_cast<char *>("Heads");
 	screenindexamount++;
@@ -281,8 +282,6 @@ int main()
 
 	for(int i = 0; i < neutralindex1_max; i++)
 	{
-		int index3;
-
 		index3 = rand() % neutralindex1;
 	
 		player[playerindex1].neutralpickups[i] = 1;	
@@ -853,7 +852,7 @@ int main()
 	cbreak();
 	keypad(stdscr, TRUE);
 
-	for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
+	for (int enemiesindex1 = 0; enemiesindex1 < enemiesindex1_max; enemiesindex1++)
 	{
 		enemyvisibley = (enemy[enemiesindex1].enemiesposy / height);
 		enemyvisiblex = (enemy[enemiesindex1].enemiesposx / width);
@@ -882,14 +881,14 @@ int main()
 		}
 	}
 	
-	for (int i = 0; i <= neutralindex1_max; i++)
+	for (int i = 0; i < neutralindex1_max; i++)
 	{
 		enemyvisibley = (player[playerindex1].playerposy / height);
 		enemyvisiblex = (player[playerindex1].playerposx / width);
 
-		if (enemyvisibley == (player[playerindex1].neutralposy[i] / height))
+		if ((player[playerindex1].playerposy / height) == (player[playerindex1].neutralposy[i] / height))
 		{
-			if (enemyvisiblex == (player[playerindex1].neutralposx[i] / width))
+			if ((player[playerindex1].playerposx / height) == (player[playerindex1].neutralposx[i] / width))
 			{
 				if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 				{
@@ -2284,7 +2283,7 @@ int main()
 
 		clear();
 
-		for (enemiesindex1 = 0; enemiesindex1 <= enemiesindex1_max; enemiesindex1++)
+		for (int enemiesindex1 = 0; enemiesindex1 < enemiesindex1_max; enemiesindex1++)
 		{
 			enemyvisibley = (enemy[enemiesindex1].enemiesposy / height);
 			enemyvisiblex = (enemy[enemiesindex1].enemiesposx / width);
@@ -2313,14 +2312,14 @@ int main()
 			}
 		}
 
-	for (int i = 0; i <= neutralindex1_max; i++)
+	for (int i = 0; i < neutralindex1_max; i++)
 	{
 		enemyvisibley = (player[playerindex1].playerposy / height);
 		enemyvisiblex = (player[playerindex1].playerposx / width);
 
-		if (enemyvisibley == (player[playerindex1].neutralposy[i] / height))
+		if ((player[playerindex1].playerposy / height) == (player[playerindex1].neutralposy[i] / height))
 		{
-			if (enemyvisiblex == (player[playerindex1].neutralposx[i] / width))
+			if ((player[playerindex1].playerposx / width) == (player[playerindex1].neutralposx[i] / width))
 			{
 				if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 				{
