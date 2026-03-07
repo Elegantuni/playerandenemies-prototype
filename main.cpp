@@ -886,7 +886,7 @@ int main(int argc, char *argv[])
 		enemyvisibley = (player[playerindex1].playerposy / height);
 		enemyvisiblex = (player[playerindex1].playerposx / width);
 
-		if ((player[playerindex1].playerposy / height) == (player[playerindex1].neutralposy[i] / height))
+		if ((player[playerindex1].playerposy / height) == (player[playerindex1].neutralposy[i] / height) && player[playerindex1].neutralpickups[i])
 		{
 			if ((player[playerindex1].playerposx / height) == (player[playerindex1].neutralposx[i] / width))
 			{
@@ -2319,7 +2319,7 @@ int main(int argc, char *argv[])
 
 		if ((player[playerindex1].playerposy / height) == (player[playerindex1].neutralposy[i] / height))
 		{
-			if ((player[playerindex1].playerposx / width) == (player[playerindex1].neutralposx[i] / width))
+			if ((player[playerindex1].playerposx / width) == (player[playerindex1].neutralposx[i] / width) && player[playerindex1].neutralpickups[i] > 0)
 			{
 				if (player[playerindex1].playerposy >= 0 && player[playerindex1].playerposx >= 0)
 				{
