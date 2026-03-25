@@ -1,0 +1,11 @@
+pdcurses_include=C:\packages\pdcurses\PDCurses-3.9
+pdcurses_lib=C:\packages\pdcurses\PDCurses-3.9\wincon\pdcurses.lib
+
+playerandenemies:
+	cl /I$(pdcurses_include) main.cpp /link $(pdcurses_lib) user32.lib gdi32.lib kernel32.lib Advapi32.lib
+	copy main.exe playerandenemies.exe
+	del main.exe main.obj
+
+clean:
+	del playerandenemies.exe
+
