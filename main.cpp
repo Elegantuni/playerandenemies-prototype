@@ -1300,6 +1300,9 @@ int main(int argc, char *argv[])
 			screeny++;
 			mvprintw(screeny, screenx, "Press k to view player stats");
 
+			screeny++;
+			mvprintw(screeny, screenx, "Press p to exit when you press b");
+
 			refresh();
 			
 			getch();
