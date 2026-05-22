@@ -1293,15 +1293,15 @@ int main(int argc, char *argv[])
 			mvprintw(screeny, screenx, "Press c to view enemy positions");
 			screeny++;
 			mvprintw(screeny, screenx, "Press f to toggle attack movement on and off. a,d,w,s to move around. q to update position and then press g and then f to exit attack movement");
-			
 			screeny++;
 			mvprintw(screeny, screenx, "Press g to pick up items when standing on them");
-
 			screeny++;
 			mvprintw(screeny, screenx, "Press k to view player stats");
-
 			screeny++;
 			mvprintw(screeny, screenx, "Press p to exit when you press b");
+			screeny++;
+			mvprintw(screeny, screenx, "The P and U characters are pickups");
+			screeny++;
 
 			refresh();
 			
