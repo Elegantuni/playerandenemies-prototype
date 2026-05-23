@@ -1300,7 +1300,7 @@ int main(int argc, char *argv[])
 			screeny++;
 			mvprintw(screeny, screenx, "Press p to exit when you press b");
 			screeny++;
-			mvprintw(screeny, screenx, "The P and U characters are pickups");
+			mvprintw(screeny, screenx, "The P and U characters are pickups.  The U is a +10 hitpoints and P is a +10 magicpoints.");
 			screeny++;
 
 			refresh();
