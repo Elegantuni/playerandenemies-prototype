@@ -1302,7 +1302,11 @@ int main(int argc, char *argv[])
 			screeny++;
 			mvprintw(screeny, screenx, "The P and U characters are pickups.  The U is a +10 hitpoints and P is a +10 magicpoints.");
 			screeny++;
-
+			mvprintw(screeny, screenx, "The E character is an Elf.");
+			screeny++;
+			mvprintw(screeny, screenx, "The O character is an Orc.");
+			screeny++;
+			
 			refresh();
 			
 			getch();
