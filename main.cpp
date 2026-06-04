@@ -79,12 +79,14 @@ int main(int argc, char *argv[])
 	screenindexamount++;
 	screenindex[screenindexamount].name = const_cast<char*>("Lips");
 	screenindexamount++;
-	screenindexenemies[screenindexamount].name = const_cast<char*>("Feet");
+	screenindex[screenindexamount].name = const_cast<char*>("Feet");
 	screenindexamount++;
-	screenindexenemies[screenindexamount].name = const_cast<char*>("Teeth");
+	screenindex[screenindexamount].name = const_cast<char*>("Teeth");
 	screenindexamount++;
-	screenindexenemies[screenindexamount].name = const_cast<char*>("Hair");
-	
+	screenindex[screenindexamount].name = const_cast<char*>("Hair");
+        screenindexamount++;
+	screenindex[screenindexamount].name = const_cast<char*>("Faces");
+	screenindexamount++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Heads");
 	screenindexamount2++;
 	screenindexenemies[screenindexamount2].name = const_cast<char*>("Arms");

@@ -23,6 +23,7 @@ struct enemiescharacter
 	char* textfeet[10];
 	char* textteeth[10];
 	char* texthair[10];
+	char* textfaces[10];
 	int enemiesposx;
 	int enemiesposy;
 	int enemiesindex;
