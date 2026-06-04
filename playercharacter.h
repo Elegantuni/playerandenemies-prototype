@@ -24,6 +24,7 @@ struct playercharacter
 	char *textteeth[10];
 	char *texthair[10];
 	char *textfaces[10];
+	char *textears[10];
 	int playerposx;
 	int playerposy;
 	int playerindex;
