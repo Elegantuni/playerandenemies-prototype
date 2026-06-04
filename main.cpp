@@ -1306,7 +1306,9 @@ int main(int argc, char *argv[])
 			screeny++;
 			mvprintw(screeny, screenx, "The O character is an Orc.");
 			screeny++;
-			
+			mvprintw(screeny, screenx, "The D character is a Dwarf.");
+			screeny++;
+
 			refresh();
 			
 			getch();
