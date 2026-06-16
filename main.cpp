@@ -1327,6 +1327,11 @@ int main(int argc, char *argv[])
 			screeny++;
 			mvprintw(screeny, screenx, "The o character is an enemy Orc.");
 			screeny++;
+			mvprintw(screeny, screenx, "The d character is an enemy Dwarf.");
+			screeny++;
+			mvprintw(screeny, screenx, "The h character is an enemy Human.");
+			screeny++;
+
 			refresh();
 			
 			getch();
